@@ -228,6 +228,13 @@ a{{color:inherit;text-decoration:none}}
 .sf-btn.on{{border-color:var(--accent);color:var(--accent);background:#0d1e36}}
 .imp-note{{font-size:11px;color:var(--dim);background:var(--card);border-radius:8px;padding:10px 12px;line-height:1.6;margin-bottom:12px;border-left:3px solid #BA751755}}
 </style>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KV7Q7SQKZX"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){{dataLayer.push(arguments);}}
+gtag('js', new Date());
+gtag('config', 'G-KV7Q7SQKZX');
+</script>
 </head>
 <body>
 <header class="hdr">
