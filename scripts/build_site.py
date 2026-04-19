@@ -109,11 +109,18 @@ def build_analytics(history, taxonomy):
             spikes.append({"sub": sub, "cnt_7": cnt_7, "cnt_30": cnt_30})
     spikes.sort(key=lambda x: -x["cnt_7"])
 
+    # 重要度集計
+    imp_all = Counter()
+    for day in history[:30]:
+        for a in day.get("articles",[]):
+            imp_all[a.get("importance","中")] += 1
+
     return {
-        "main_30": [(k, v, taxonomy.get(k,{}).get("label",k)) for k,v in main_30.most_common()],
-        "main_7":  [(k, v, taxonomy.get(k,{}).get("label",k)) for k,v in main_7.most_common()],
-        "sub_7":   sub_7.most_common(15),
-        "spikes":  spikes[:5],
+        "main_30":  [(k, v, taxonomy.get(k,{}).get("label",k)) for k,v in main_30.most_common()],
+        "main_7":   [(k, v, taxonomy.get(k,{}).get("label",k)) for k,v in main_7.most_common()],
+        "sub_7":    sub_7.most_common(15),
+        "spikes":   spikes[:5],
+        "imp_list": imp_all.most_common(),
         "total_articles": sum(len(d.get("articles",[])) for d in history),
         "total_days":     len(history),
     }
@@ -333,7 +340,11 @@ function renderBars(containerId, data, colorFn, maxOverride) {{
   }}).join('');
 }}
 
-document.addEventListener('DOMContentLoaded', function() {{
+// 重要度を履歴から集計
+const impCount = {{"高":0,"中":0,"低":0}};
+(ANA.imp_list||[]).forEach(([imp,cnt]) => {{ if(impCount[imp]!==undefined) impCount[imp]=cnt; }});
+
+function initDashboard() {{
   document.getElementById('s-total').textContent = ANA.total_articles;
   document.getElementById('s-days').textContent  = ANA.total_days;
   document.getElementById('s-spike').textContent = ANA.spikes.length;
@@ -355,12 +366,11 @@ document.addEventListener('DOMContentLoaded', function() {{
     label => {{ const k = ANA.main_7.find(([_,__,l])=>l===label)?.[0]; return MAIN_COLORS[k]||'#378ADD'; }}
   );
 
-  renderBars('imp-bars',
-    [["高", ANA.main_30.reduce((s,[k])=>s,0)], ["中",0],["低",0]].filter(x=>x),
-    label => IMP_COLORS[label] || '#888'
-  );
+  // 重要度バー
+  const impData = [["高", impCount["高"]], ["中", impCount["中"]], ["低", impCount["低"]]].filter(([,v])=>v>0);
+  renderBars('imp-bars', impData, label => IMP_COLORS[label]||'#888');
 
-  // 大項目フィルター
+  // 大項目フィルターボタン生成
   const filterEl = document.getElementById('main-filter');
   const mainKeys = [...new Set(ANA.main_7.map(([k])=>k))];
   if (!mainKeys.length) {{
@@ -370,12 +380,14 @@ document.addEventListener('DOMContentLoaded', function() {{
   filterEl.innerHTML = mainKeys.map((k,i) => {{
     const label = TAX[k]?.label || k;
     const color = MAIN_COLORS[k] || '#378ADD';
-    return `<button class="sf-btn${{i===0?' on':''}}" data-key="${{k}}"
-      style="${{i===0?`border-color:${{color}};color:${{color}};background:${{color}}22`:''}}"
-      onclick="selectMain('${{k}}',this,${{JSON.stringify(color)}})">${{label}}</button>`;
+    const style = i===0 ? `border-color:${{color}};color:${{color}};background:${{color}}22` : '';
+    return `<button class="sf-btn${{i===0?' on':''}}" data-key="${{k}}" style="${{style}}"
+      onclick="selectMain('${{k}}',this,'${{color}}')">${{label}}</button>`;
   }}).join('');
   selectMain(mainKeys[0], filterEl.querySelector('.sf-btn.on'), MAIN_COLORS[mainKeys[0]]||'#378ADD');
-}});
+}}
+
+document.addEventListener('DOMContentLoaded', initDashboard);
 
 function selectMain(key, el, color) {{
   document.querySelectorAll('.sf-btn').forEach(b => {{
