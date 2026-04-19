@@ -381,8 +381,13 @@ function initDashboard() {{
     const label = TAX[k]?.label || k;
     const color = MAIN_COLORS[k] || '#378ADD';
     const style = i===0 ? `border-color:${{color}};color:${{color}};background:${{color}}22` : '';
-    return `<button class="sf-btn${{i===0?' on':''}}" data-key="${{k}}" style="${{style}}"
-      onclick="selectMain('${{k}}',this,'${{color}}')">${{label}}</button>`;
+    const btn = document.createElement('button');
+    btn.className = 'sf-btn' + (i===0?' on':'');
+    btn.dataset.key = k;
+    btn.style.cssText = style;
+    btn.textContent = label;
+    btn.addEventListener('click', function(){ selectMain(k, this, color); });
+    return btn.outerHTML;
   }}).join('');
   selectMain(mainKeys[0], filterEl.querySelector('.sf-btn.on'), MAIN_COLORS[mainKeys[0]]||'#378ADD');
 }}
