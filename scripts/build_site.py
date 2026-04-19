@@ -1,233 +1,348 @@
 """
-build_site.py
-latest.jsonからSEO対応・AdSense枠付き・有料会員導線付きのHTMLを生成する
+build_site.py - 示唆・学び・人気ランキング・トレンドダッシュボード付きHTML生成
 """
 
-import json
-import os
+import json, os
 from datetime import datetime, timezone, timedelta
+from collections import Counter
 
-JST = timezone(timedelta(hours=9))
+JST       = timezone(timedelta(hours=9))
 DATA_PATH = "docs/data/latest.json"
 OUT_PATH  = "docs/index.html"
 
-ADSENSE_CLIENT = "ca-pub-XXXXXXXXXXXXXXXX"  # ← AdSense審査後に差し替え
-ADSENSE_SLOT   = "XXXXXXXXXX"
-
 IMPORTANCE_COLOR = {"高": "#E24B4A", "中": "#BA7517", "低": "#639922"}
 TAG_COLOR = {
-    "AI for Security": "#185FA5",
-    "Security for AI": "#0F6E56",
-    "脆弱性":           "#993C1D",
-    "脅威インテル":      "#A32D2D",
-    "規制・政策":        "#3C3489",
-    "研究・学術":        "#3B6D11",
+    "AI for Security": "#185FA5", "Security for AI": "#0F6E56",
+    "脆弱性": "#993C1D",           "脅威インテル": "#A32D2D",
+    "規制・政策": "#3C3489",        "研究・学術": "#3B6D11",
 }
 
+def tag_badge(tag):
+    c = TAG_COLOR.get(tag, "#5F5E5A")
+    return f'<span class="tag" style="background:{c}18;color:{c};border:1px solid {c}40">{tag}</span>'
 
-def tag_badge(tag: str) -> str:
-    color = TAG_COLOR.get(tag, "#5F5E5A")
-    return f'<span class="tag" style="background:{color}22;color:{color};border:1px solid {color}44">{tag}</span>'
+def imp_badge(imp):
+    c = IMPORTANCE_COLOR.get(imp, "#888")
+    return f'<span class="imp-badge" style="color:{c};border-color:{c}60">重要度 {imp}</span>'
 
+def tier_label(tier):
+    return {"A":"公的・大手","B":"専門メディア","C":"学術"}.get(tier, tier)
 
-def importance_badge(imp: str) -> str:
-    color = IMPORTANCE_COLOR.get(imp, "#888780")
-    return f'<span class="imp" style="color:{color};border:1px solid {color}66">重要度 {imp}</span>'
+def article_card(a, rank=None):
+    tags   = "".join(tag_badge(t) for t in a.get("tags", []))
+    pub    = a.get("published","")[:10]
+    views  = a.get("views", 0)
+    insight = a.get("insight","")
+    insight_html = f'<div class="insight"><span class="insight-label">示唆・学び</span>{insight}</div>' if insight else ""
+    rank_html = f'<span class="rank-num">#{rank}</span>' if rank else ""
 
-
-def tier_label(tier: str) -> str:
-    labels = {"A": "公的・大手", "B": "専門メディア", "C": "学術"}
-    return labels.get(tier, tier)
-
-
-def article_card(a: dict, is_premium: bool = False) -> str:
-    tags_html = "".join(tag_badge(t) for t in a.get("tags", []))
-    pub = a.get("published", "")[:10]
-    blur_class = "blur-card" if is_premium else ""
-    premium_overlay = '<div class="premium-overlay"><span>会員限定</span><a href="#premium" class="join-btn">無料登録して読む</a></div>' if is_premium else ""
-
-    return f"""
-<article class="card {blur_class}">
-  {premium_overlay}
+    return f"""<article class="card" data-id="{a['id']}" onclick="countView('{a['id']}')">
   <div class="card-meta">
-    <span class="source-tier">{tier_label(a['source_tier'])}</span>
-    <span class="source-name">{a['source_name']}</span>
-    <span class="pub-date">{pub}</span>
-    {importance_badge(a.get('importance','中'))}
+    {rank_html}
+    <span class="tier">{tier_label(a['source_tier'])}</span>
+    <span class="source">{a['source_name']}</span>
+    <span class="pub">{pub}</span>
+    {imp_badge(a.get('importance','中'))}
+    <span class="views-badge" id="views-{a['id']}">👁 {views}</span>
   </div>
-  <h2 class="card-title">
-    <a href="{a['url']}" target="_blank" rel="noopener">{a['title_ja']}</a>
-  </h2>
-  <p class="card-summary">{a.get('summary_ja','')}</p>
-  <div class="card-tags">{tags_html}</div>
-  <div class="card-source">
-    出典: <a href="{a['url']}" target="_blank" rel="noopener">{a['source_name']}</a>
-    <span class="original-title">"{a['title']}"</span>
-  </div>
+  <h2 class="card-title"><a href="{a['url']}" target="_blank" rel="noopener">{a.get('title_ja') or a['title']}</a></h2>
+  <p class="card-summary">{a.get('summary_ja') or a.get('summary','')}</p>
+  {insight_html}
+  <div class="card-tags">{tags}</div>
+  <div class="card-footer">出典: <a href="{a['url']}" target="_blank" rel="noopener">{a['source_name']}</a>
+  <em class="orig-title">"{a['title']}"</em></div>
 </article>"""
 
 
-def build_html(data: dict) -> str:
+def build_trend_data(history):
+    """過去30日分のトレンドデータを集計"""
+    tag_counts   = Counter()
+    imp_counts   = Counter()
+    kw_counts    = Counter()
+    daily_counts = []
+
+    for day in history[:30]:
+        articles = day.get("articles", [])
+        daily_counts.append({"date": day["date"], "count": len(articles)})
+        for a in articles:
+            for t in a.get("tags", []):
+                tag_counts[t] += 1
+            imp_counts[a.get("importance","中")] += 1
+            for kw in a.get("keywords", []):
+                kw_counts[kw] += 1
+
+    return {
+        "tags":   tag_counts.most_common(6),
+        "imp":    imp_counts.most_common(),
+        "kw":     kw_counts.most_common(10),
+        "daily":  list(reversed(daily_counts[:14])),
+    }
+
+
+def build_html(data):
     articles = data.get("articles", [])
-    today = data.get("today", "")
-    updated = data.get("updated", "")[:16].replace("T", " ")
+    today    = data.get("today", "")
+    updated  = data.get("updated","")[:16].replace("T"," ")
+    history  = data.get("history", [])
 
-    # 無料公開: 上位3件、それ以降は会員限定（将来有効化）
-    free_articles    = articles[:3]
-    premium_articles = articles[3:]
+    # 人気記事（views降順、全履歴から）
+    all_articles = [a for day in history for a in day.get("articles",[])]
+    popular = sorted(all_articles, key=lambda x: x.get("views",0), reverse=True)[:5]
 
-    free_html    = "\n".join(article_card(a, False) for a in free_articles)
-    premium_html = "\n".join(article_card(a, True)  for a in premium_articles)
-
-    # 履歴アーカイブ
-    history = data.get("history", [])
+    # アーカイブリンク
     archive_html = ""
-    for day in history[1:8]:  # 直近7日分（今日除く）
+    for day in history[1:8]:
         d = day.get("date","")
         n = len(day.get("articles",[]))
-        archive_html += f'<a href="archive/{d}.html" class="archive-link">{d} ({n}件)</a>\n'
+        archive_html += f'<a href="archive/{d}.html" class="arc-link">{d}（{n}件）</a>\n'
+
+    # トレンドデータ
+    trend = build_trend_data(history)
+
+    # 今日の記事HTML
+    today_html = "\n".join(article_card(a) for a in articles) if articles else \
+        '<p class="empty">本日は該当記事がありませんでした。</p>'
+
+    # 人気記事HTML
+    popular_html = "\n".join(article_card(a, rank=i+1) for i, a in enumerate(popular)) if popular else \
+        '<p class="empty">データ蓄積中...</p>'
+
+    # トレンドチャート用JSON
+    trend_json = json.dumps(trend, ensure_ascii=False)
+
+    # 全記事データ（views更新用）
+    all_json = json.dumps({a["id"]: a.get("views",0) for a in all_articles}, ensure_ascii=False)
 
     return f"""<!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AI×セキュリティ ニュース日報 | {today}</title>
-  <meta name="description" content="サイバーセキュリティ×AI分野の最新ニュースを毎日自動収集・日本語要約。CISA・NIST・Krebs・Dark Readingなど信頼できるソースのみ掲載。">
-  <meta property="og:title" content="AI×セキュリティ ニュース日報 {today}">
-  <meta property="og:description" content="サイバーセキュリティ×AI分野の最新ニュース日本語要約">
-  <meta property="og:type" content="website">
-  <link rel="alternate" type="application/rss+xml" title="AI×セキュリティ ニュース" href="/feed.xml">
-  <!-- Google AdSense（審査通過後に有効化） -->
-  <!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client={ADSENSE_CLIENT}" crossorigin="anonymous"></script> -->
-  <style>
-    *, *::before, *::after {{ box-sizing: border-box; margin: 0; padding: 0; }}
-    :root {{
-      --bg: #fafaf8; --card: #fff; --text: #1a1a18; --muted: #666662;
-      --border: #e5e3dc; --accent: #185FA5; --radius: 10px;
-    }}
-    @media (prefers-color-scheme: dark) {{
-      :root {{ --bg:#181816; --card:#222220; --text:#e8e6de; --muted:#9c9a92; --border:#333330; }}
-    }}
-    body {{ font-family: -apple-system, "Helvetica Neue", sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }}
-    .site-header {{ border-bottom: 1px solid var(--border); padding: 1rem 0; margin-bottom: 2rem; }}
-    .header-inner {{ max-width: 720px; margin: 0 auto; padding: 0 1rem; display: flex; align-items: baseline; gap: 1rem; flex-wrap: wrap; }}
-    .site-title {{ font-size: 1.2rem; font-weight: 600; color: var(--text); text-decoration: none; }}
-    .site-subtitle {{ font-size: 0.8rem; color: var(--muted); }}
-    .updated {{ font-size: 0.75rem; color: var(--muted); margin-left: auto; }}
-    main {{ max-width: 720px; margin: 0 auto; padding: 0 1rem 4rem; }}
-    .section-title {{ font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); margin-bottom: 1rem; }}
-    .card {{ background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.25rem; margin-bottom: 1rem; position: relative; }}
-    .card-meta {{ display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin-bottom: .6rem; font-size: .72rem; }}
-    .source-tier {{ background: #e6f1fb; color: #0c447c; padding: 2px 7px; border-radius: 99px; font-weight: 500; }}
-    .source-name {{ color: var(--muted); }}
-    .pub-date {{ color: var(--muted); margin-left: auto; }}
-    .imp {{ font-size: .7rem; padding: 2px 7px; border-radius: 99px; }}
-    .card-title {{ font-size: 1rem; font-weight: 600; margin-bottom: .5rem; line-height: 1.4; }}
-    .card-title a {{ color: var(--text); text-decoration: none; }}
-    .card-title a:hover {{ color: var(--accent); }}
-    .card-summary {{ font-size: .88rem; color: var(--muted); margin-bottom: .75rem; line-height: 1.6; }}
-    .card-tags {{ display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: .6rem; }}
-    .tag {{ font-size: .7rem; padding: 2px 8px; border-radius: 99px; }}
-    .card-source {{ font-size: .72rem; color: var(--muted); }}
-    .card-source a {{ color: var(--accent); }}
-    .original-title {{ font-style: italic; margin-left: 4px; }}
-    /* AdSense枠 */
-    .ad-unit {{ background: var(--card); border: 1px dashed var(--border); border-radius: var(--radius);
-                padding: 1rem; text-align: center; color: var(--muted); font-size: .75rem;
-                min-height: 90px; display: flex; align-items: center; justify-content: center; margin: 1.5rem 0; }}
-    /* 会員限定ブラー */
-    .blur-card .card-summary, .blur-card .card-source {{ filter: blur(4px); user-select: none; pointer-events: none; }}
-    .premium-overlay {{ position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center;
-                         justify-content: center; gap: .5rem; border-radius: var(--radius); z-index: 1; }}
-    .join-btn {{ background: var(--accent); color: #fff; padding: .4rem 1rem; border-radius: 99px;
-                 font-size: .8rem; text-decoration: none; font-weight: 500; }}
-    /* 会員登録セクション */
-    .premium-section {{ background: linear-gradient(135deg,#e6f1fb,#eeedfe); border: 1px solid #b5d4f4;
-                         border-radius: var(--radius); padding: 1.5rem; margin: 2rem 0; text-align: center; }}
-    .premium-section h3 {{ font-size: 1rem; margin-bottom: .5rem; color: #0c447c; }}
-    .premium-section p {{ font-size: .85rem; color: #185FA5; margin-bottom: 1rem; }}
-    .premium-form {{ display: flex; gap: .5rem; max-width: 400px; margin: 0 auto; flex-wrap: wrap; }}
-    .premium-form input {{ flex: 1; min-width: 180px; padding: .5rem .75rem; border: 1px solid #b5d4f4; border-radius: 99px; font-size: .85rem; }}
-    .premium-form button {{ background: #185FA5; color: #fff; border: none; padding: .5rem 1.25rem; border-radius: 99px; font-size: .85rem; cursor: pointer; font-weight: 500; }}
-    /* アーカイブ */
-    .archive {{ margin-top: 2rem; }}
-    .archive-link {{ display: inline-block; font-size: .78rem; color: var(--accent); margin-right: .75rem; margin-bottom: .25rem; }}
-    footer {{ text-align: center; font-size: .72rem; color: var(--muted); padding: 2rem 1rem; border-top: 1px solid var(--border); margin-top: 2rem; }}
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>AI×セキュリティ ニュース日報 | {today}</title>
+<meta name="description" content="サイバーセキュリティ×AI分野の最新ニュースを毎日自動収集・日本語要約。示唆・学び付き。">
+<style>
+*,*::before,*::after{{box-sizing:border-box;margin:0;padding:0}}
+:root{{--bg:#f8f8f6;--card:#fff;--text:#1a1a18;--muted:#66665e;--border:#e4e2db;--accent:#185FA5;--r:10px}}
+@media(prefers-color-scheme:dark){{:root{{--bg:#161614;--card:#202020;--text:#e6e4dc;--muted:#98968e;--border:#2e2e2c}}}}
+body{{font-family:-apple-system,"Helvetica Neue",sans-serif;background:var(--bg);color:var(--text);line-height:1.7;font-size:15px}}
+a{{color:inherit;text-decoration:none}}
+/* header */
+.site-header{{border-bottom:1px solid var(--border);padding:.9rem 0;margin-bottom:2rem}}
+.h-inner{{max-width:900px;margin:0 auto;padding:0 1.25rem;display:flex;align-items:center;gap:.75rem;flex-wrap:wrap}}
+.site-title{{font-size:1.1rem;font-weight:700;color:var(--text)}}
+.site-sub{{font-size:.75rem;color:var(--muted)}}
+.updated{{font-size:.72rem;color:var(--muted);margin-left:auto}}
+/* layout */
+.wrap{{max-width:900px;margin:0 auto;padding:0 1.25rem 4rem;display:grid;grid-template-columns:1fr 280px;gap:2rem}}
+@media(max-width:680px){{.wrap{{grid-template-columns:1fr}}}}
+.main-col{{min-width:0}}
+.side-col{{min-width:0}}
+/* section label */
+.sec-label{{font-size:.7rem;font-weight:700;letter-spacing:.08em;color:var(--muted);text-transform:uppercase;margin-bottom:.9rem}}
+/* card */
+.card{{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:1.1rem 1.2rem;margin-bottom:.9rem;cursor:pointer;transition:border-color .15s}}
+.card:hover{{border-color:#aaa9a0}}
+.card-meta{{display:flex;flex-wrap:wrap;gap:5px;align-items:center;margin-bottom:.55rem;font-size:.7rem}}
+.tier{{background:#e6f1fb;color:#0c447c;padding:2px 7px;border-radius:99px;font-weight:600}}
+.source{{color:var(--muted)}}
+.pub{{color:var(--muted);margin-left:auto}}
+.imp-badge{{font-size:.68rem;padding:2px 6px;border-radius:99px;border:1px solid}}
+.views-badge{{font-size:.68rem;color:var(--muted)}}
+.rank-num{{font-size:.85rem;font-weight:700;color:var(--accent);min-width:24px}}
+.card-title{{font-size:.95rem;font-weight:600;margin-bottom:.45rem;line-height:1.4}}
+.card-title a:hover{{color:var(--accent)}}
+.card-summary{{font-size:.83rem;color:var(--muted);margin-bottom:.6rem;line-height:1.65}}
+.insight{{background:#f0f4ff;border-left:3px solid #378ADD;border-radius:0 6px 6px 0;padding:.5rem .75rem;margin-bottom:.6rem;font-size:.8rem;line-height:1.55}}
+@media(prefers-color-scheme:dark){{.insight{{background:#1a2035;border-color:#378ADD}}}}
+.insight-label{{display:block;font-size:.65rem;font-weight:700;color:#185FA5;letter-spacing:.05em;margin-bottom:2px}}
+.card-tags{{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:.5rem}}
+.tag{{font-size:.67rem;padding:2px 7px;border-radius:99px}}
+.card-footer{{font-size:.68rem;color:var(--muted)}}
+.card-footer a{{color:var(--accent)}}
+.orig-title{{font-style:italic;margin-left:4px}}
+.empty{{font-size:.85rem;color:var(--muted);padding:1.5rem 0}}
+/* dashboard */
+.dash-card{{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:1rem 1.1rem;margin-bottom:1rem}}
+.dash-title{{font-size:.78rem;font-weight:600;margin-bottom:.75rem;color:var(--text)}}
+.bar-row{{display:flex;align-items:center;gap:6px;margin-bottom:6px;font-size:.72rem}}
+.bar-label{{width:90px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex-shrink:0}}
+.bar-track{{flex:1;height:6px;background:var(--border);border-radius:3px;overflow:hidden}}
+.bar-fill{{height:100%;border-radius:3px;transition:width .4s}}
+.bar-count{{width:20px;text-align:right;color:var(--muted)}}
+.kw-cloud{{display:flex;flex-wrap:wrap;gap:5px}}
+.kw-tag{{font-size:.7rem;padding:3px 9px;border-radius:99px;background:var(--bg);border:1px solid var(--border);color:var(--muted)}}
+.arc-link{{display:inline-block;font-size:.75rem;color:var(--accent);margin-right:.6rem;margin-bottom:.25rem}}
+/* sparkline */
+canvas{{display:block;width:100%!important;height:48px!important}}
+footer{{text-align:center;font-size:.7rem;color:var(--muted);padding:1.5rem;border-top:1px solid var(--border);margin-top:1rem}}
+</style>
 </head>
 <body>
 <header class="site-header">
-  <div class="header-inner">
+  <div class="h-inner">
     <a href="/" class="site-title">AI×セキュリティ ニュース日報</a>
-    <span class="site-subtitle">信頼できるソースのみ・毎朝自動更新</span>
-    <span class="updated">最終更新: {updated} JST</span>
+    <span class="site-sub">信頼できるソースのみ・毎朝自動更新・最大5件/日</span>
+    <span class="updated">更新: {updated} JST</span>
   </div>
 </header>
 
-<main>
-  <p class="section-title">{today} のニュース</p>
+<div class="wrap">
+  <main class="main-col">
+    <p class="sec-label">{today} のニュース（{len(articles)}件）</p>
+    {today_html}
 
-  {free_html}
-
-  <!-- AdSense広告枠（審査通過後に insタグに差し替え） -->
-  <div class="ad-unit" id="ad-1">広告枠（AdSense審査通過後に表示）</div>
-
-  <!-- 会員登録セクション -->
-  <section class="premium-section" id="premium">
-    <h3>残り{len(premium_articles)}件は会員限定</h3>
-    <p>メールアドレスを登録すると全記事 + 過去30日アーカイブを無料で読めます</p>
-    <div class="premium-form">
-      <input type="email" placeholder="your@email.com">
-      <button onclick="alert('近日公開予定です！')">無料で登録</button>
+    <div style="margin-top:2rem">
+      <p class="sec-label">人気記事ランキング</p>
+      {popular_html}
     </div>
-  </section>
 
-  {premium_html}
+    <div style="margin-top:2rem">
+      <p class="sec-label">過去のニュース</p>
+      {archive_html if archive_html else '<p class="empty">蓄積中...</p>'}
+    </div>
+  </main>
 
-  <!-- アーカイブ -->
-  <div class="archive">
-    <p class="section-title">過去のニュース</p>
-    {archive_html if archive_html else '<p style="font-size:.8rem;color:var(--muted)">蓄積中...</p>'}
-  </div>
-</main>
+  <aside class="side-col">
+    <div class="dash-card">
+      <p class="dash-title">カテゴリ分布（過去30日）</p>
+      <div id="tag-bars"></div>
+    </div>
+
+    <div class="dash-card">
+      <p class="dash-title">記事数の推移（過去14日）</p>
+      <canvas id="sparkline" height="48"></canvas>
+    </div>
+
+    <div class="dash-card">
+      <p class="dash-title">頻出キーワード</p>
+      <div class="kw-cloud" id="kw-cloud"></div>
+    </div>
+
+    <div class="dash-card">
+      <p class="dash-title">重要度の内訳</p>
+      <div id="imp-bars"></div>
+    </div>
+  </aside>
+</div>
 
 <footer>
-  <p>本サイトは公的機関・信頼できる専門メディアのRSSフィードを自動収集しAIで要約しています。</p>
-  <p>各記事の著作権は原著者・掲載メディアに帰属します。</p>
-  <p style="margin-top:.5rem">Powered by Gemini API + GitHub Actions | <a href="/feed.xml" style="color:var(--accent)">RSS</a></p>
+  <p>各記事の著作権は原著者・掲載メディアに帰属します。本サイトは要約・リンクのみ掲載しています。</p>
+  <p style="margin-top:.3rem">Powered by Gemini 2.0 Flash + GitHub Actions</p>
 </footer>
+
+<script>
+const TREND = {trend_json};
+const VIEWS = {all_json};
+
+// --- ダッシュボード描画 ---
+function renderBars(containerId, data, colorMap, defaultColor) {{
+  const el = document.getElementById(containerId);
+  if (!el || !data.length) return;
+  const max = data[0][1] || 1;
+  el.innerHTML = data.map(([label, count]) => {{
+    const pct = Math.round(count / max * 100);
+    const color = colorMap?.[label] || defaultColor || '#378ADD';
+    return `<div class="bar-row">
+      <span class="bar-label" title="${{label}}">${{label}}</span>
+      <div class="bar-track"><div class="bar-fill" style="width:${{pct}}%;background:${{color}}"></div></div>
+      <span class="bar-count">${{count}}</span>
+    </div>`;
+  }}).join('');
+}}
+
+const TAG_COLORS = {{"AI for Security":"#185FA5","Security for AI":"#0F6E56","脆弱性":"#993C1D","脅威インテル":"#A32D2D","規制・政策":"#3C3489","研究・学術":"#3B6D11"}};
+const IMP_COLORS = {{"高":"#E24B4A","中":"#BA7517","低":"#639922"}};
+
+renderBars('tag-bars', TREND.tags, TAG_COLORS, '#378ADD');
+renderBars('imp-bars', TREND.imp,  IMP_COLORS, '#888');
+
+// キーワードクラウド
+const kwEl = document.getElementById('kw-cloud');
+if (kwEl && TREND.kw.length) {{
+  const maxKw = TREND.kw[0][1] || 1;
+  kwEl.innerHTML = TREND.kw.map(([kw, cnt]) => {{
+    const size = 0.65 + (cnt / maxKw) * 0.3;
+    return `<span class="kw-tag" style="font-size:${{size.toFixed(2)}}rem">${{kw}}</span>`;
+  }}).join('');
+}}
+
+// スパークライン
+(function() {{
+  const canvas = document.getElementById('sparkline');
+  if (!canvas || !TREND.daily.length) return;
+  const dpr = window.devicePixelRatio || 1;
+  canvas.width  = canvas.offsetWidth  * dpr || 240 * dpr;
+  canvas.height = 48 * dpr;
+  const ctx = canvas.getContext('2d');
+  ctx.scale(dpr, dpr);
+  const w = canvas.offsetWidth || 240, h = 48;
+  const counts = TREND.daily.map(d => d.count);
+  const maxV = Math.max(...counts, 1);
+  const step = w / (counts.length - 1 || 1);
+  const pts = counts.map((v, i) => [i * step, h - 6 - (v / maxV) * (h - 12)]);
+
+  // 塗りつぶし
+  const grad = ctx.createLinearGradient(0, 0, 0, h);
+  grad.addColorStop(0, 'rgba(55,138,221,0.25)');
+  grad.addColorStop(1, 'rgba(55,138,221,0)');
+  ctx.beginPath();
+  ctx.moveTo(pts[0][0], pts[0][1]);
+  pts.slice(1).forEach(([x,y]) => ctx.lineTo(x, y));
+  ctx.lineTo(w, h); ctx.lineTo(0, h); ctx.closePath();
+  ctx.fillStyle = grad; ctx.fill();
+
+  // 線
+  ctx.beginPath();
+  ctx.moveTo(pts[0][0], pts[0][1]);
+  pts.slice(1).forEach(([x,y]) => ctx.lineTo(x, y));
+  ctx.strokeStyle = '#378ADD'; ctx.lineWidth = 1.5;
+  ctx.lineJoin = 'round'; ctx.stroke();
+}})();
+
+// --- views カウント（localStorage） ---
+const storageKey = 'aisc_views';
+function loadViews() {{
+  try {{ return JSON.parse(localStorage.getItem(storageKey) || '{{}}'); }} catch {{ return {{}}; }}
+}}
+function countView(id) {{
+  const v = loadViews();
+  v[id] = (v[id] || 0) + 1;
+  localStorage.setItem(storageKey, JSON.stringify(v));
+  const el = document.getElementById('views-' + id);
+  if (el) el.textContent = '👁 ' + v[id];
+}}
+// ページ表示時に保存済みviewsを反映
+(function() {{
+  const v = loadViews();
+  Object.entries(v).forEach(([id, cnt]) => {{
+    const el = document.getElementById('views-' + id);
+    if (el) el.textContent = '👁 ' + cnt;
+  }});
+}})();
+</script>
 </body>
 </html>"""
 
 
 def main():
     if not os.path.exists(DATA_PATH):
-        print(f"[ERROR] {DATA_PATH} が見つかりません。先に fetch_and_summarize.py を実行してください。")
-        return
+        print(f"[ERROR] {DATA_PATH} なし"); return
 
     with open(DATA_PATH, "r", encoding="utf-8") as f:
         data = json.load(f)
 
     os.makedirs("docs", exist_ok=True)
-    html = build_html(data)
-
     with open(OUT_PATH, "w", encoding="utf-8") as f:
-        f.write(html)
+        f.write(build_html(data))
+    print(f"生成完了: {OUT_PATH} ({len(data.get('articles',[]))}件)")
 
-    print(f"生成完了: {OUT_PATH}")
-
-    # アーカイブページも生成
     os.makedirs("docs/archive", exist_ok=True)
     for day in data.get("history", []):
-        d = day.get("date", "")
-        archive_data = {**data, "today": d, "articles": day.get("articles", []), "history": []}
-        archive_html = build_html(archive_data)
-        archive_path = f"docs/archive/{d}.html"
-        with open(archive_path, "w", encoding="utf-8") as f:
-            f.write(archive_html)
-    print(f"アーカイブ生成: {len(data.get('history',[]))}日分")
-
+        d = day.get("date","")
+        arc = {**data, "today": d, "articles": day.get("articles",[]), "history": []}
+        with open(f"docs/archive/{d}.html", "w", encoding="utf-8") as f:
+            f.write(build_html(arc))
+    print(f"アーカイブ: {len(data.get('history',[]))}日分")
 
 if __name__ == "__main__":
     main()
