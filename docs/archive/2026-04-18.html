@@ -275,12 +275,18 @@ function initDashboard() {
     filterEl.innerHTML = '<p class="empty">データ蓄積中...</p>';
     return;
   }
-  filterEl.innerHTML = mainKeys.map((k,i) => {
-    const label = TAX[k]?.label || k;
+  filterEl.innerHTML = "";
+  mainKeys.forEach(function(k,i) {
+    const label = TAX[k] ? TAX[k].label : k;
     const color = MAIN_COLORS[k] || '#378ADD';
-    const style = i===0 ? `border-color:${color};color:${color};background:${color}22` : '';
-    return '<button class="sf-btn'+(i===0?' on':'')+'" data-key="'+k+'" style="'+style+'" onclick="selectMain(''+k+'',this,''+color+'')">'+label+'</button>';
-  }).join('');
+    const btn = document.createElement("button");
+    btn.className = "sf-btn" + (i===0 ? " on" : "");
+    btn.dataset.key = k;
+    if (i===0) { btn.style.borderColor=color; btn.style.color=color; btn.style.background=color+"22"; }
+    btn.textContent = label;
+    btn.addEventListener("click", (function(key,c){ return function(){ selectMain(key,this,c); }; })(k,color));
+    filterEl.appendChild(btn);
+  });
   selectMain(mainKeys[0], filterEl.querySelector('.sf-btn.on'), MAIN_COLORS[mainKeys[0]]||'#378ADD');
 }
 
