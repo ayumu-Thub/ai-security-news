@@ -479,5 +479,25 @@ def main():
             f.write(arc_html)
     print(f"アーカイブ: {len(data.get('history',[]))}日分")
 
+    # 月別アーカイブJSON生成
+    from collections import defaultdict
+    monthly = defaultdict(list)
+    for day in data.get('history', []):
+        d = day.get('date', '')
+        if len(d) >= 7:
+            monthly[d[:7]].extend(day.get('articles', []))
+
+    os.makedirs('docs/data/archive', exist_ok=True)
+
+    index = [{'date': d.get('date',''), 'count': len(d.get('articles',[]))} for d in data.get('history',[])]
+    with open('docs/data/archive/index.json', 'w', encoding='utf-8') as f:
+        json.dump({'days': index}, f, ensure_ascii=False, indent=2)
+
+    for month, articles in monthly.items():
+        with open(f'docs/data/archive/{month}.json', 'w', encoding='utf-8') as f:
+            json.dump({'month': month, 'articles': articles}, f, ensure_ascii=False, indent=2)
+
+    print(f'月別アーカイブ: {len(monthly)}ヶ月分')
+
 if __name__ == "__main__":
     main()
