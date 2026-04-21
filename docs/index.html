@@ -86,11 +86,11 @@ gtag('config', 'G-KV7Q7SQKZX');
 </header>
 
 <div class="tab-bar">
-  <div class="tab on"  onclick="switchTab('today',this)">本日のニュース</div>
-  <div class="tab"     onclick="switchTab('popular',this)">人気記事</div>
-  <div class="tab"     onclick="switchTab('archive',this)">アーカイブ</div>
-  <div class="tab"     onclick="switchTab('trend',this)">トレンド分析</div>
-  <a href="about.html" class="tab" style="text-decoration:none;display:block">About</a>
+  <a href="#today"   class="tab">本日のニュース</a>
+  <a href="#popular" class="tab">人気記事</a>
+  <a href="#archive" class="tab">アーカイブ</a>
+  <a href="#trend"   class="tab">トレンド分析</a>
+  <a href="about.html" class="tab">About</a>
 </div>
 
 <div class="pane on" id="pane-today">
@@ -266,12 +266,28 @@ const TAX = {"attack": {"label": "攻撃・脅威", "subs": ["ランサムウェ
 const IMP_COLORS = {"高":"#E24B4A","中":"#BA7517","低":"#639922"};
 const MAIN_COLORS = {"attack":"#E24B4A","vuln":"#BA7517","ai_sec":"#378ADD","ai_risk":"#7F77DD","policy":"#1D9E75","incident":"#D85A30","biz_tech":"#639922"};
 
-function switchTab(id, el) {
-  document.querySelectorAll('.pane').forEach(p => p.classList.remove('on'));
-  document.querySelectorAll('.tab').forEach(t => t.classList.remove('on'));
-  document.getElementById('pane-' + id).classList.add('on');
-  el.classList.add('on');
+function showTab(id) {
+  var valid = ['today','popular','archive','trend'];
+  if (valid.indexOf(id) < 0) id = 'today';
+  document.querySelectorAll('.pane').forEach(function(p) { p.classList.remove('on'); });
+  document.querySelectorAll('.tab-bar .tab').forEach(function(t) { t.classList.remove('on'); });
+  var pane = document.getElementById('pane-' + id);
+  if (pane) pane.classList.add('on');
+  var tab = document.querySelector('.tab-bar a[href="#' + id + '"]');
+  if (tab) tab.classList.add('on');
 }
+
+function initTab() {
+  var h = location.hash.replace('#','') || 'today';
+  showTab(h);
+}
+
+window.addEventListener('hashchange', function() {
+  var h = location.hash.replace('#','') || 'today';
+  showTab(h);
+});
+
+window.addEventListener('load', initTab);
 
 function renderBars(containerId, data, colorFn, maxOverride) {
   const el = document.getElementById(containerId);
