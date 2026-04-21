@@ -251,7 +251,7 @@ gtag('config', 'G-KV7Q7SQKZX');
   <a href="about.html" class="tab">About</a>
 </div>
 
-<div class="pane on" id="pane-today">
+<div class="pane" id="pane-today">
   <p class="plabel">{today} のニュース（{len(articles)}件）</p>
   {today_html}
 </div>
