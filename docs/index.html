@@ -287,7 +287,12 @@ window.addEventListener('hashchange', function() {
   showTab(h);
 });
 
-window.addEventListener('load', initTab);
+// すぐ実行（load待ちしない）
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initTab);
+} else {
+  initTab();
+}
 
 function renderBars(containerId, data, colorFn, maxOverride) {
   const el = document.getElementById(containerId);
