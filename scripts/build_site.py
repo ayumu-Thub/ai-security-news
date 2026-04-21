@@ -316,6 +316,47 @@ gtag('config', 'G-KV7Q7SQKZX');
   </div>
 </div>
 
+
+<div class="pane" id="pane-about">
+  <p class="plabel">About</p>
+  <div style="max-width:720px;margin:0 auto;padding:1rem 0">
+    <h1 style="font-size:28px;font-weight:700;color:#fff;margin-bottom:6px;letter-spacing:-.01em">Ayudle</h1>
+    <p style="font-size:13px;color:#6a6860;margin-bottom:2.5rem">AI×セキュリティ ニュース日報 運営者</p>
+    <div style="margin-bottom:2.5rem">
+      <div style="font-size:11px;font-weight:700;letter-spacing:.1em;color:#6a6860;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid #2a2a28">Profile</div>
+      <div style="font-size:14px;color:#98968e;line-height:1.85"><p>若手セキュリティエンジニアです。セキュリティ監視・運用の高度化や自動化、AI×セキュリティの検証・サービス開発に携わってきました。AI for SecurityとSecurity for AIの両方に興味を持ち、業界の標準化・研究活動にも関わっています。</p></div>
+    </div>
+    <div style="margin-bottom:2.5rem">
+      <div style="font-size:11px;font-weight:700;letter-spacing:.1em;color:#6a6860;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid #2a2a28">このサイトを作った理由</div>
+      <div style="font-size:14px;color:#98968e;line-height:1.85">
+        <p style="margin-bottom:1rem">AIエージェントが企業のあらゆる業務に浸透していく中で、「AIエージェント自体のリスクをどう管理するか」という問いへの関心が高まっています。</p>
+        <p>私自身、セキュリティ監視運用の現場に携わりながら、この領域が今後どう変わっていくのかを継続的に追いかけたいと考えていました。断片的なニュースを都度追うのではなく、構造的に理解するための情報基盤が欲しい。それがこのサイトを作った理由です。</p>
+      </div>
+    </div>
+    <div style="margin-bottom:2.5rem">
+      <div style="font-size:11px;font-weight:700;letter-spacing:.1em;color:#6a6860;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid #2a2a28">私が持っている仮説</div>
+      <div style="font-size:14px;color:#98968e;line-height:1.85">
+        <p style="margin-bottom:1rem">AIエージェントのリスクは、以下の6つの層に分けて考えると整理しやすいと思っています。</p>
+        <div style="display:flex;flex-direction:column;gap:6px;margin:1rem 0">
+          <div style="background:#1a1a18;border-radius:10px;padding:10px 14px;font-size:13px"><span style="font-size:11px;font-weight:700;color:#378ADD;margin-right:6px">①</span><span style="font-weight:500;color:#e6e4dc">モデル・推論層</span><div style="font-size:12px;color:#6a6860;margin-top:2px">プロンプトインジェクション、ハルシネーション、目的逸脱</div></div>
+          <div style="background:#1a1a18;border-radius:10px;padding:10px 14px;font-size:13px"><span style="font-size:11px;font-weight:700;color:#378ADD;margin-right:6px">②</span><span style="font-weight:500;color:#e6e4dc">ツール・実行層</span><div style="font-size:12px;color:#6a6860;margin-top:2px">権限過剰、ツール誤操作、エージェントハイジャック</div></div>
+          <div style="background:#1a1a18;border-radius:10px;padding:10px 14px;font-size:13px"><span style="font-size:11px;font-weight:700;color:#378ADD;margin-right:6px">③</span><span style="font-weight:500;color:#e6e4dc">マルチエージェント層</span><div style="font-size:12px;color:#6a6860;margin-top:2px">AI間の誤連携、カスケード障害、攻撃の自動化</div></div>
+          <div style="background:#1a1a18;border-radius:10px;padding:10px 14px;font-size:13px"><span style="font-size:11px;font-weight:700;color:#378ADD;margin-right:6px">④</span><span style="font-weight:500;color:#e6e4dc">データ・インフラ層</span><div style="font-size:12px;color:#6a6860;margin-top:2px">データ境界の崩壊、シャドーAI、サプライチェーン攻撃</div></div>
+          <div style="background:#1a1a18;border-radius:10px;padding:10px 14px;font-size:13px"><span style="font-size:11px;font-weight:700;color:#378ADD;margin-right:6px">⑤</span><span style="font-weight:500;color:#e6e4dc">アイデンティティ・権限層</span><div style="font-size:12px;color:#6a6860;margin-top:2px">非人間IDの管理、過剰自律性、Observability欠如</div></div>
+          <div style="background:#1a1a18;border-radius:10px;padding:10px 14px;font-size:13px"><span style="font-size:11px;font-weight:700;color:#378ADD;margin-right:6px">⑥</span><span style="font-weight:500;color:#e6e4dc">組織・ガバナンス層</span><div style="font-size:12px;color:#6a6860;margin-top:2px">責任所在の不明確さ、automation bias、法規制の未整備</div></div>
+        </div>
+        <p style="margin-bottom:1rem">これらのリスクをエンドポイント・ネットワーク・サーバー・アプリケーションといったあらゆる領域にわたって、識別・防御・検知・対応・復旧の観点で一元的に監視するセンターが、近い将来必ず必要になると考えています。</p>
+        <p style="margin-bottom:1rem">従来のSOCは人間が操作するシステムを守る前提で設計されています。しかしAIエージェントが主体として動く環境では、監視対象の性質が根本的に変わります。エージェントの判断の異常を検知し、その連鎖を止め、影響を復旧する。そのような機能を持つ組織が、従来のSOCと統合されてより広い範囲をカバーするサイバーディフェンスセンターへと進化していくと見ています。</p>
+        <p>現在の市場では、Observabilityツール・プロンプトセキュリティ・AI権限管理などが個別のソリューションとして存在しています。これらを統合して一元的に可視化・監視するプラットフォームはまだ確立されていません。このサイトは、その空白を埋めていくための知識インフラとして育てていくつもりです。</p>
+      </div>
+    </div>
+    <div>
+      <div style="font-size:11px;font-weight:700;letter-spacing:.1em;color:#6a6860;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid #2a2a28">このサイトでやっていること</div>
+      <div style="font-size:14px;color:#98968e;line-height:1.85"><p>信頼できるソースからAI×セキュリティの最新ニュースを毎日自動収集・日本語要約して公開しています。単なるニュースの羅列にとどまらず、上記の仮説に基づいた構造的な可視化プラットフォームとして発展させていく予定です。</p></div>
+    </div>
+  </div>
+</div>
+
 <footer style="text-align:center;font-size:10px;color:var(--dim);padding:20px;border-top:1px solid var(--border);margin-top:16px">
   <p>各記事の著作権は原著者・掲載メディアに帰属します。本サイトは要約・リンクのみ掲載しています。</p>
   <p style="margin-top:4px">Powered by Gemini 2.5 Flash + GitHub Actions（完全無料）</p>
