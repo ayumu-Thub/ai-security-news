@@ -2,7 +2,7 @@
 
 サイバーセキュリティ×AI分野のニュースを毎日自動収集・日本語要約して公開するWebサイト。
 
-**公開URL:** https://ayumu-thub.github.io/ai-security-news
+**公開URL:** https://ayudle.github.io/ai-security-news
 
 ---
 
