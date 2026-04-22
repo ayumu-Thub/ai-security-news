@@ -126,13 +126,13 @@ def fetch_rss(source):
             has_sec = any(kw in combined for kw in SECURITY_KEYWORDS)
             if not has_ai and not has_sec:
                 continue
-            # AI関連記事にスコアを付与（ソート用）
             ai_score = 2 if has_ai else 1
             articles.append({
                 "id":          hashlib.md5(link.encode()).hexdigest()[:12],
                 "title":       title,
                 "summary":     summary[:500],
                 "url":         link,
+                "ai_score":    ai_score,
                 "source_name": source["name"],
                 "source_tier": source["tier"],
                 "published":   pub.astimezone(JST).isoformat(),
@@ -143,11 +143,29 @@ def fetch_rss(source):
 
 
 def deduplicate(articles):
+    """AI関連記事を優先、同一ソースから最大2件まで"""
+    from collections import Counter
     seen, unique = set(), []
-    for a in sorted(articles, key=lambda x: {"A":0,"B":1,"C":2}.get(x["source_tier"],9)):
-        if a["id"] not in seen:
-            seen.add(a["id"])
-            unique.append(a)
+    source_count = Counter()
+    MAX_PER_SOURCE = 2
+
+    # ソート: AI関連記事優先（ai_score降順）→ Tier（A→B→C）
+    sorted_articles = sorted(
+        articles,
+        key=lambda x: (
+            -x.get("ai_score", 1),
+            {"A":0,"B":1,"C":2}.get(x.get("source_tier","B"), 9)
+        )
+    )
+
+    for a in sorted_articles:
+        if a["id"] in seen:
+            continue
+        if source_count[a["source_name"]] >= MAX_PER_SOURCE:
+            continue
+        seen.add(a["id"])
+        source_count[a["source_name"]] += 1
+        unique.append(a)
     return unique
 
 
