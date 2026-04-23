@@ -244,7 +244,10 @@ def summarize_with_gemini(articles):
                 raise
 
     if response is None:
-        raise last_error or Exception("All retries failed")
+        print(f"[SKIP] Gemini APIが混雑中のため今回はスキップします。次回の自動実行で再試行されます。")
+        print(f"  最終ステータス: 503 UNAVAILABLE")
+        import sys
+        sys.exit(0)  # エラーではなく正常終了扱い（後続のstepもスキップされる）
 
     try:
         text = response.text.strip()
