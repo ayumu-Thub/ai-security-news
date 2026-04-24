@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ayudle.github.io/ai-security-news/sitemap.xml
