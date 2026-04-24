@@ -562,7 +562,7 @@ def build_article_page(article, all_articles, taxonomy):
     # シェアURL
     site_url = f"https://ayudle.github.io/ai-security-news/article/{aid}.html"
     share_text = f"{title_ja} | AI×セキュリティ ニュース日報"
-    twitter_url = f"https://twitter.com/intent/tweet?text={share_text}&url={site_url}"
+    twitter_url = f"https://x.com/intent/post?text={share_text}&url={site_url}"
 
     return f"""<!DOCTYPE html>
 <html lang="ja">
@@ -575,8 +575,34 @@ def build_article_page(article, all_articles, taxonomy):
 <meta property="og:description" content="{summary_ja[:120]}">
 <meta property="og:url" content="{site_url}">
 <meta property="og:type" content="article">
-<meta name="twitter:card" content="summary">
-<link rel="icon" href="data:,">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{title_ja}">
+<meta name="twitter:description" content="{summary_ja[:120]}">
+<meta property="og:image" content="https://ayudle.github.io/ai-security-news/og-image.png">
+<meta name="twitter:image" content="https://ayudle.github.io/ai-security-news/og-image.png">
+<link rel="canonical" href="{site_url}">
+<link rel="icon" type="image/png" href="../favicon.png">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<script type="application/ld+json">
+{{
+  "@context": "https://schema.org",
+  "@type": "NewsArticle",
+  "headline": "{title_ja}",
+  "description": "{summary_ja[:200]}",
+  "datePublished": "{pub}",
+  "url": "{site_url}",
+  "image": "https://ayudle.github.io/ai-security-news/og-image.png",
+  "publisher": {{
+    "@type": "Organization",
+    "name": "AI×セキュリティ ニュース日報",
+    "url": "https://ayudle.github.io/ai-security-news/"
+  }},
+  "author": {{
+    "@type": "Person",
+    "name": "Ayudle"
+  }}
+}}
+</script>
 <style>
 :root{{--bg:#0f0f0e;--text:#e6e4dc;--dim:#6a6860;--border:#2a2a28;--accent:#378ADD;--card:#1a1a18;--insight-bg:#14243a;--insight-border:#378ADD}}
 *{{box-sizing:border-box;margin:0;padding:0}}
@@ -763,6 +789,58 @@ def main():
             json.dump({'month': month, 'articles': articles}, f, ensure_ascii=False, indent=2)
 
     print(f'月別アーカイブ: {len(monthly)}ヶ月分')
+
+    # sitemap.xml 生成
+    site_url = 'https://ayudle.github.io/ai-security-news'
+    sitemap_urls = [
+        {'loc': f'{site_url}/', 'priority': '1.0', 'changefreq': 'daily'},
+    ]
+    # 個別記事ページ
+    for a in unique_articles:
+        aid = a.get('id')
+        pub = a.get('published', '')[:10]
+        if aid:
+            sitemap_urls.append({
+                'loc': f'{site_url}/article/{aid}.html',
+                'priority': '0.8',
+                'changefreq': 'weekly',
+                'lastmod': pub
+            })
+    # 日別アーカイブ
+    for day in data.get('history', []):
+        d = day.get('date', '')
+        if d:
+            sitemap_urls.append({
+                'loc': f'{site_url}/archive/{d}.html',
+                'priority': '0.6',
+                'changefreq': 'monthly',
+                'lastmod': d
+            })
+
+    sitemap_xml = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+    for u in sitemap_urls:
+        sitemap_xml += '  <url>\n'
+        sitemap_xml += f'    <loc>{u["loc"]}</loc>\n'
+        if 'lastmod' in u:
+            sitemap_xml += f'    <lastmod>{u["lastmod"]}</lastmod>\n'
+        sitemap_xml += f'    <changefreq>{u["changefreq"]}</changefreq>\n'
+        sitemap_xml += f'    <priority>{u["priority"]}</priority>\n'
+        sitemap_xml += '  </url>\n'
+    sitemap_xml += '</urlset>\n'
+
+    with open('docs/sitemap.xml', 'w', encoding='utf-8') as f:
+        f.write(sitemap_xml)
+    print(f'sitemap.xml: {len(sitemap_urls)}件')
+
+    # robots.txt 生成
+    robots_txt = f"""User-agent: *
+Allow: /
+
+Sitemap: {site_url}/sitemap.xml
+"""
+    with open('docs/robots.txt', 'w', encoding='utf-8') as f:
+        f.write(robots_txt)
+    print('robots.txt: generated')
 
 if __name__ == "__main__":
     main()
