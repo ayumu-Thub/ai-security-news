@@ -58,8 +58,6 @@ def article_card(a, rank=None):
     <span class="vw" id="v-{a.get('id','')}">👁 {views}</span>
   </div>
   <h2 class="ct"><a href="/ai-security-news/article/{a.get('id','')}.html">{a.get('title_ja') or a.get('title','')}</a></h2>
-  <p class="cs">{a.get('summary_ja') or a.get('summary','')}</p>
-  {insight_html}
   <div class="tags">
     {tag_main_badge(main_id, main_label)}
     {subs_html}
@@ -382,7 +380,7 @@ gtag('config', 'G-KV7Q7SQKZX');
       <div style="font-size:14px;color:#98968e;line-height:1.85">
         <p style="margin-bottom:1rem">X（旧Twitter）で最新ニュースを毎朝発信しています。フォローお待ちしています。</p>
         <a href="https://x.com/ayudle_aisec" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;padding:10px 18px;background:#1a1a18;border:1px solid #2a2a28;border-radius:6px;text-decoration:none;color:#e6e4dc;font-size:13px;font-weight:500;transition:border-color .15s" onmouseover="this.style.borderColor='#378ADD'" onmouseout="this.style.borderColor='#2a2a28'">
-          <span style="font-size:16px">𝕏</span>
+          <span style="font-size:14px;font-weight:700">X</span>
           <span>@ayudle_aisec をフォロー</span>
         </a>
       </div>
@@ -398,7 +396,7 @@ gtag('config', 'G-KV7Q7SQKZX');
 <footer style="text-align:center;font-size:10px;color:var(--dim);padding:20px;border-top:1px solid var(--border);margin-top:16px">
   <p>各記事の著作権は原著者・掲載メディアに帰属します。本サイトは要約・リンクのみ掲載しています。</p>
   <p style="margin-top:4px">Powered by Gemini 2.5 Flash + GitHub Actions（完全無料）</p>
-  <p style="margin-top:8px"><a href="https://x.com/ayudle_aisec" target="_blank" rel="noopener" style="color:var(--dim);text-decoration:none;font-size:10px">𝕏 @ayudle_aisec</a></p>
+  <p style="margin-top:8px"><a href="https://x.com/ayudle_aisec" target="_blank" rel="noopener" style="color:var(--dim);text-decoration:none;font-size:10px">X: @ayudle_aisec</a></p>
 </footer>
 
 <script>
@@ -768,7 +766,7 @@ footer{{text-align:center;font-size:10px;color:var(--dim);padding:20px;border-to
     </div>
     <div class="actions">
       <a href="{url}" target="_blank" rel="noopener" class="btn btn-primary">🔗 元記事を読む（外部サイト）</a>
-      <a href="{twitter_url}" target="_blank" rel="noopener" class="btn btn-secondary">𝕏 でシェア</a>
+      <a href="{twitter_url}" target="_blank" rel="noopener" class="btn btn-secondary">Xでシェア</a>
       <button onclick="navigator.clipboard.writeText('{site_url}').then(()=>alert('URLをコピーしました'))" class="btn btn-secondary">📋 URLをコピー</button>
     </div>
   </section>
@@ -779,7 +777,7 @@ footer{{text-align:center;font-size:10px;color:var(--dim);padding:20px;border-to
 <footer>
   各記事の著作権は原著者・掲載メディアに帰属します。本サイトは要約・リンクのみ掲載しています。<br>
   <p style="margin-top:4px">Powered by Gemini 2.5 Flash + GitHub Actions（完全無料）</p>
-  <p style="margin-top:8px"><a href="https://x.com/ayudle_aisec" target="_blank" rel="noopener" style="color:var(--dim);text-decoration:none;font-size:10px">𝕏 @ayudle_aisec</a></p>
+  <p style="margin-top:8px"><a href="https://x.com/ayudle_aisec" target="_blank" rel="noopener" style="color:var(--dim);text-decoration:none;font-size:10px">X: @ayudle_aisec</a></p>
 </footer>
 
 </body>
