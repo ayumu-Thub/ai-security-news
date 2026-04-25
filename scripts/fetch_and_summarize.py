@@ -183,7 +183,9 @@ def summarize_with_gemini(articles):
     ])
 
     prompt = f"""あなたはサイバーセキュリティ×AI領域に精通したCISOアドバイザーであり、
-マッキンゼーのトップコンサルタントの視点も併せ持ちます。
+マッキンゼーのトップコンサルタントの視点も併せ持ち、さらに次世代のサイバーディフェンスセンター（CDC）サービス設計者でもあります。
+
+CDCとは、検知・調査・対応・復旧・監査対応支援・レポーティング・ビジネス影響説明までを統合的に提供するサービスを指します。AIエージェントの普及により、SOCは「AIエージェント監視の一機能」となり、最終的にCDCに統合進化していくと想定されています。
 
 以下のサイバーセキュリティ×AI分野のニュース記事を日本語で分析してください。
 必ずJSONのみを返してください。前置き・説明文・```記号は一切不要です。
@@ -191,19 +193,30 @@ def summarize_with_gemini(articles):
 【タグ定義】（必ずこのリストから選ぶこと。リスト外のタグは絶対に使用禁止）
 {tag_ref}
 
+【AIエージェントリスク6階層モデル（参考）】
+①モデル・推論層：LLM/SLMの脆弱性、プロンプトインジェクション、モデル汚染、敵対的攻撃
+②ツール・実行層：ツール権限濫用、コード実行、サンドボックス脱出、MCPセキュリティ
+③マルチエージェント層：エージェント間通信、合意形成、信頼境界、タスク連鎖
+④データ・インフラ層：訓練データ汚染、ベクターDB、RAG、メモリ処理、データ流出
+⑤アイデンティティ・権限層：認証認可、権限ギャップ、セッション管理、人間との委任関係
+⑥組織・ガバナンス層：規制対応、責任範囲、監査、ポリシー、シャドーAI
+
 【出力形式】
-[
-  {{
-    "index": 1,
-    "title_ja": "日本語タイトル（簡潔に・記事の本質を捉える）",
-    "summary_ja": "3〜4文の日本語要約。背景・内容・影響の順で記述。専門用語は適切に使用",
-    "insight": "CISO/経営視点での示唆。以下の観点から選んで2〜3文で記述。一般論・定型句は避け、具体的・行動可能な内容にする。",
-    "importance": "高 | 中 | 低",
-    "importance_reason": "重要度判断の理由を1文で",
-    "tag_main_id": "attack | vuln | ai_sec | ai_risk | policy | incident | biz_tech のいずれか1つ",
-    "tag_subs": ["中項目を1〜3つ。必ず上記タグ定義のリスト内から選ぶこと"]
-  }}
-]
+{{
+  "articles": [
+    {{
+      "index": 1,
+      "title_ja": "日本語タイトル（簡潔に・記事の本質を捉える）",
+      "summary_ja": "3〜4文の日本語要約。背景・内容・影響の順で記述。専門用語は適切に使用",
+      "insight": "CISO/経営視点での示唆。以下の観点から選んで2〜3文で記述。一般論・定型句は避け、具体的・行動可能な内容にする。",
+      "importance": "高 | 中 | 低",
+      "importance_reason": "重要度判断の理由を1文で",
+      "tag_main_id": "attack | vuln | ai_sec | ai_risk | policy | incident | biz_tech のいずれか1つ",
+      "tag_subs": ["中項目を1〜3つ。必ず上記タグ定義のリスト内から選ぶこと"]
+    }}
+  ],
+  "today_implication": "本日の記事群から読み取れる傾向と、CISO/経営視点およびCDCサービス設計視点での示唆を200文字程度で。前半はCISO・経営層が読んで実務的に役立つ視点、後半はAIエージェント時代のセキュリティ運用サービス設計上の含意を含めること。一般論や定型句は避け、本日の記事から具体的に読み取れることを書く。"
+}}
 
 【示唆・学びの観点（記事のタイプに応じて選ぶ）】
 - 脆弱性・攻撃系: どのレイヤーで何を対策すべきか、自社の類似資産への影響評価
@@ -296,7 +309,7 @@ def summarize_with_gemini(articles):
             "tag_subs":          clean_subs,
             "views":             0,
         })
-    return enriched
+    return enriched, today_implication
 
 
 def main():
@@ -317,7 +330,7 @@ def main():
         return
 
     print("Gemini APIで要約・タグ付け中...")
-    enriched = summarize_with_gemini(selected)
+    enriched, today_implication = summarize_with_gemini(selected)
 
     os.makedirs(os.path.dirname(OUTPUT_PATH), exist_ok=True)
     history = []
@@ -330,7 +343,7 @@ def main():
 
     today_str = datetime.now(JST).strftime("%Y-%m-%d")
     history = [h for h in history if h.get("date") != today_str]
-    history.insert(0, {"date": today_str, "articles": enriched})
+    history.insert(0, {"date": today_str, "articles": enriched, "today_implication": today_implication})
     history = history[:90]
 
     output = {
