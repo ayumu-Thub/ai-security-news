@@ -266,7 +266,7 @@ gtag('config', 'G-KV7Q7SQKZX');
 <body>
 <header class="hdr">
   <span class="ht">AI×セキュリティ ニュース日報</span>
-  <span class="hs">信頼できるソースのみ・毎朝自動更新・最大5件/日</span>
+  <span class="hs">信頼できるソースのみ・毎朝自動更新・最大10件/日</span>
   <span class="hu">更新: {updated} JST</span>
 </header>
 
@@ -398,6 +398,7 @@ gtag('config', 'G-KV7Q7SQKZX');
 <footer style="text-align:center;font-size:10px;color:var(--dim);padding:20px;border-top:1px solid var(--border);margin-top:16px">
   <p>各記事の著作権は原著者・掲載メディアに帰属します。本サイトは要約・リンクのみ掲載しています。</p>
   <p style="margin-top:4px">Powered by Gemini 2.5 Flash + GitHub Actions（完全無料）</p>
+  <p style="margin-top:8px"><a href="https://x.com/ayudle_aisec" target="_blank" rel="noopener" style="color:var(--dim);text-decoration:none;font-size:10px">𝕏 @ayudle_aisec</a></p>
 </footer>
 
 <script>
@@ -778,6 +779,7 @@ footer{{text-align:center;font-size:10px;color:var(--dim);padding:20px;border-to
 <footer>
   各記事の著作権は原著者・掲載メディアに帰属します。本サイトは要約・リンクのみ掲載しています。<br>
   <p style="margin-top:4px">Powered by Gemini 2.5 Flash + GitHub Actions（完全無料）</p>
+  <p style="margin-top:8px"><a href="https://x.com/ayudle_aisec" target="_blank" rel="noopener" style="color:var(--dim);text-decoration:none;font-size:10px">𝕏 @ayudle_aisec</a></p>
 </footer>
 
 </body>
