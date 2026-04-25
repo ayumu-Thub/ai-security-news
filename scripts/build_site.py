@@ -633,7 +633,7 @@ def build_article_page(article, all_articles, taxonomy):
 
     hashtags_str = " ".join(["#AIセキュリティ"] + [f"#{t}" for t in extra_tags])
 
-    share_text_raw = f"【AI×セキュリティ速報】\n\n{{title_ja}}\n\n{{hashtags_str}}"
+    share_text_raw = f"【AI×セキュリティ速報】\n\n{title_ja}\n\n{hashtags_str}"
     share_text_encoded = quote(share_text_raw, safe='')
     site_url_encoded = quote(site_url, safe='')
     twitter_url = f"https://x.com/intent/post?text={share_text_encoded}&url={site_url_encoded}"
