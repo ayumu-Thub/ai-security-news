@@ -597,13 +597,46 @@ def build_article_page(article, all_articles, taxonomy):
 
     subs_html = "".join(tag_sub_badge(s) for s in subs)
 
-    # シェアURL（URLエンコード対応）
+    # シェアURL（URLエンコード対応 + 完成形テンプレ + 動的ハッシュタグ）
     from urllib.parse import quote
     site_url = f"https://ayudle.github.io/ai-security-news/article/{aid}.html"
-    share_text_raw = f"{title_ja} | AI×セキュリティ ニュース日報"
+
+    # tag_subs から動的にハッシュタグを選定
+    HASHTAG_MAP = {{
+        "プロンプトインジェクション": "プロンプトインジェクション",
+        "LLMセキュリティ": "LLMセキュリティ",
+        "モデル汚染": "モデル汚染",
+        "敵対的攻撃": "敵対的攻撃",
+        "AIを使った攻撃": "AI攻撃",
+        "AIを使った防御": "AI防御",
+        "ハルシネーション": "ハルシネーション",
+        "EU AI法": "EUAI法",
+        "コンプライアンス": "AIコンプライアンス",
+        "標準化": "AI標準化",
+        "安全性評価": "AI安全性",
+        "アライメント": "アライメント",
+        "プライバシー侵害": "プライバシー",
+        "サプライチェーン攻撃": "サプライチェーン",
+        "モデル逆転攻撃": "モデル逆転",
+        "バイアス・差別": "AIバイアス",
+        "誤情報生成": "AI誤情報",
+        "著作権": "AI著作権",
+    }}
+    extra_tags = []
+    for s in subs:
+        if s in HASHTAG_MAP and HASHTAG_MAP[s] not in extra_tags:
+            extra_tags.append(HASHTAG_MAP[s])
+        if len(extra_tags) >= 2:
+            break
+    if not extra_tags:
+        extra_tags = ["AIエージェント"]
+
+    hashtags_str = " ".join(["#AIセキュリティ"] + [f"#{t}" for t in extra_tags])
+
+    share_text_raw = f"【AI×セキュリティ速報】\n\n{{title_ja}}\n\n{{hashtags_str}}"
     share_text_encoded = quote(share_text_raw, safe='')
     site_url_encoded = quote(site_url, safe='')
-    twitter_url = f"https://x.com/intent/post?text={share_text_encoded}&url={site_url_encoded}"
+    twitter_url = f"https://x.com/intent/post?text={{share_text_encoded}}&url={{site_url_encoded}}"
 
     return f"""<!DOCTYPE html>
 <html lang="ja">
