@@ -57,7 +57,7 @@ def article_card(a, rank=None):
     {imp_badge(a.get('importance','中'))}{reason_html}
     <span class="vw" id="v-{a.get('id','')}">👁 {views}</span>
   </div>
-  <h2 class="ct"><a href="article/{a.get('id','')}.html">{a.get('title_ja') or a.get('title','')}</a></h2>
+  <h2 class="ct"><a href="/ai-security-news/article/{a.get('id','')}.html">{a.get('title_ja') or a.get('title','')}</a></h2>
   <p class="cs">{a.get('summary_ja') or a.get('summary','')}</p>
   {insight_html}
   <div class="tags">
