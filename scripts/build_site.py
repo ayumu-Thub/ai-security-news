@@ -175,18 +175,18 @@ def build_html(data):
 <link rel="icon" type="image/png" href="favicon.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <script type="application/ld+json">
-{{{{
+{{
   "@context": "https://schema.org",
   "@type": "WebSite",
   "name": "AI×セキュリティ ニュース日報",
   "url": "https://ayudle.github.io/ai-security-news/",
   "description": "サイバーセキュリティ×AI分野の最新ニュースを毎日自動収集・日本語要約",
-  "publisher": {{{{
+  "publisher": {{
     "@type": "Organization",
     "name": "AI×セキュリティ ニュース日報",
     "url": "https://ayudle.github.io/ai-security-news/"
-  }}}}
-}}}}
+  }}
+}}
 </script>
 <style>
 *,*::before,*::after{{box-sizing:border-box;margin:0;padding:0}}
@@ -264,7 +264,7 @@ gtag('config', 'G-KV7Q7SQKZX');
 <body>
 <header class="hdr">
   <span class="ht">AI×セキュリティ ニュース日報</span>
-  <span class="hs">信頼できるソースのみ・毎朝自動更新・最大10件/日</span>
+  <span class="hs">信頼できるソースのみ・毎日自動更新・最大10件/日</span>
   <span class="hu">更新: {updated} JST</span>
 </header>
 
@@ -296,8 +296,8 @@ gtag('config', 'G-KV7Q7SQKZX');
 <div class="pane" id="pane-archive">
   <p class="plabel">過去のニュース</p>
   <div class="arc-note">
-    過去最大90日分のアーカイブを保存しています。毎朝自動更新されます。<br>
-    各記事の著作権は原著者・掲載メディアに帰属します。本サイトは要約・リンクのみ掲載しています。
+    過去最大90日分のアーカイブを保存しています。毎日自動更新されます。<br>
+    各記事の著作権は原著者・掲載メディアに帰属します。本サイトは要約・リンクのみ掲載しています。<br>日本語要約・タグ・示唆はLLMにより自動生成されており、誤りや不正確な情報を含む可能性があります。重要な判断には必ず元記事をご確認ください。
   </div>
   <div style="margin-top:12px">
     {archive_rows if archive_rows else '<p class="empty">蓄積中...</p>'}
@@ -384,7 +384,7 @@ gtag('config', 'G-KV7Q7SQKZX');
     <div style="margin-bottom:2.5rem">
       <div style="font-size:11px;font-weight:700;letter-spacing:.1em;color:#6a6860;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid #2a2a28">SNS</div>
       <div style="font-size:14px;color:#98968e;line-height:1.85">
-        <p style="margin-bottom:1rem">X（旧Twitter）で最新ニュースを毎朝発信しています。フォローお待ちしています。</p>
+        <p style="margin-bottom:1rem">X（旧Twitter）で最新ニュースを毎日発信しています。フォローお待ちしています。</p>
         <a href="https://x.com/ayudle_aisec" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;padding:10px 18px;background:#1a1a18;border:1px solid #2a2a28;border-radius:6px;text-decoration:none;color:#e6e4dc;font-size:13px;font-weight:500;transition:border-color .15s" onmouseover="this.style.borderColor='#378ADD'" onmouseout="this.style.borderColor='#2a2a28'">
           <span style="font-size:14px;font-weight:700">X</span>
           <span>@ayudle_aisec をフォロー</span>
@@ -400,7 +400,7 @@ gtag('config', 'G-KV7Q7SQKZX');
 </div>
 
 <footer style="text-align:center;font-size:10px;color:var(--dim);padding:20px;border-top:1px solid var(--border);margin-top:16px">
-  <p>各記事の著作権は原著者・掲載メディアに帰属します。本サイトは要約・リンクのみ掲載しています。</p>
+  <p>各記事の著作権は原著者・掲載メディアに帰属します。本サイトは要約・リンクのみ掲載しています。<br>日本語要約・タグ・示唆はLLMにより自動生成されており、誤りや不正確な情報を含む可能性があります。重要な判断には必ず元記事をご確認ください。</p>
   <p style="margin-top:4px">Powered by Gemini 2.5 Flash + GitHub Actions（完全無料）</p>
   <p style="margin-top:8px"><a href="https://x.com/ayudle_aisec" target="_blank" rel="noopener" style="color:var(--dim);text-decoration:none;font-size:10px">X: @ayudle_aisec</a></p>
 </footer>
@@ -799,7 +799,7 @@ footer{{text-align:center;font-size:10px;color:var(--dim);padding:20px;border-to
 </article>
 
 <footer>
-  各記事の著作権は原著者・掲載メディアに帰属します。本サイトは要約・リンクのみ掲載しています。<br>
+  各記事の著作権は原著者・掲載メディアに帰属します。本サイトは要約・リンクのみ掲載しています。<br>日本語要約・タグ・示唆はLLMにより自動生成されており、誤りや不正確な情報を含む可能性があります。重要な判断には必ず元記事をご確認ください。<br>
   <p style="margin-top:4px">Powered by Gemini 2.5 Flash + GitHub Actions（完全無料）</p>
   <p style="margin-top:8px"><a href="https://x.com/ayudle_aisec" target="_blank" rel="noopener" style="color:var(--dim);text-decoration:none;font-size:10px">X: @ayudle_aisec</a></p>
 </footer>
