@@ -377,6 +377,17 @@ gtag('config', 'G-KV7Q7SQKZX');
         <p>現在の市場では、Observabilityツール・プロンプトセキュリティ・AI権限管理などが個別のソリューションとして存在しています。これらを統合して一元的に可視化・監視するプラットフォームはまだ確立されていません。このサイトは、その空白を埋めていくための知識インフラとして育てていくつもりです。</p>
       </div>
     </div>
+    <div style="margin-bottom:2.5rem">
+      <div style="font-size:11px;font-weight:700;letter-spacing:.1em;color:#6a6860;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid #2a2a28">SNS</div>
+      <div style="font-size:14px;color:#98968e;line-height:1.85">
+        <p style="margin-bottom:1rem">X（旧Twitter）で最新ニュースを毎朝発信しています。フォローお待ちしています。</p>
+        <a href="https://x.com/ayudle_aisec" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;padding:10px 18px;background:#1a1a18;border:1px solid #2a2a28;border-radius:6px;text-decoration:none;color:#e6e4dc;font-size:13px;font-weight:500;transition:border-color .15s" onmouseover="this.style.borderColor='#378ADD'" onmouseout="this.style.borderColor='#2a2a28'">
+          <span style="font-size:16px">𝕏</span>
+          <span>@ayudle_aisec をフォロー</span>
+        </a>
+      </div>
+    </div>
+
     <div>
       <div style="font-size:11px;font-weight:700;letter-spacing:.1em;color:#6a6860;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid #2a2a28">このサイトでやっていること</div>
       <div style="font-size:14px;color:#98968e;line-height:1.85"><p>信頼できるソースからAI×セキュリティの最新ニュースを毎日自動収集・日本語要約して公開しています。単なるニュースの羅列にとどまらず、上記の仮説に基づいた構造的な可視化プラットフォームとして発展させていく予定です。</p></div>
