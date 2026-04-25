@@ -469,7 +469,7 @@ const impCount = {{"高":0,"中":0,"低":0}};
 function initDashboard() {{
   if (ANA.today_implication) {{
     document.getElementById('today-implication-text').innerHTML =
-      ANA.today_implication.replace(/\n/g, '<br>');
+      ANA.today_implication.replace(/\\n/g, '<br>');
     document.getElementById('today-implication-box').style.display = '';
   }}
 
