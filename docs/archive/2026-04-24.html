@@ -65,6 +65,9 @@ a{color:inherit;text-decoration:none}
 .tags{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:6px}
 .tag-main{font-size:10px;padding:2px 8px;border-radius:99px;border:1px solid;font-weight:600}
 .tag-sub{font-size:10px;padding:2px 7px;border-radius:99px;background:#222220;border:1px solid #333330;color:var(--muted)}
+.tags-meta{margin-top:3px}
+.tag-layer{font-size:9px;padding:1px 6px;border-radius:99px;background:#0d2233;border:1px solid #1a4060;color:#6aabdd}
+.tag-kw{font-size:9px;padding:1px 5px;border-radius:99px;background:#1e1e1c;border:1px solid #2e2e2c;color:#6a6860}
 .cf{font-size:10px;color:var(--dim)}
 .cf a{color:var(--accent)}
 .orig{font-style:italic;margin-left:4px}
@@ -136,6 +139,7 @@ gtag('config', 'G-KV7Q7SQKZX');
     <span class="tag-main" style="background:#E24B4A20;color:#E24B4A;border-color:#E24B4A44">攻撃・脅威</span>
     <span class="tag-sub">APT</span><span class="tag-sub">マルウェア</span>
   </div>
+  
   <div class="cf">出典: <a href="https://www.cisa.gov/news-events/cybersecurity-advisories/aa26-113a" target="_blank" rel="noopener">CISA</a>
   <em class="orig">"Defending Against China-Nexus Covert Networks of Compromised Devices"</em></div>
 </article>
@@ -153,6 +157,7 @@ gtag('config', 'G-KV7Q7SQKZX');
     <span class="tag-main" style="background:#185FA520;color:#185FA5;border-color:#185FA544">AI×セキュリティ</span>
     <span class="tag-sub">LLMセキュリティ</span><span class="tag-sub">モデル汚染</span>
   </div>
+  
   <div class="cf">出典: <a href="https://www.darkreading.com/vulnerabilities-threats/bad-memories-haunt-ai-agents" target="_blank" rel="noopener">Dark Reading</a>
   <em class="orig">"Bad Memories Still Haunt AI Agents"</em></div>
 </article>
@@ -170,6 +175,7 @@ gtag('config', 'G-KV7Q7SQKZX');
     <span class="tag-main" style="background:#185FA520;color:#185FA5;border-color:#185FA544">AI×セキュリティ</span>
     <span class="tag-sub">AIを使った攻撃</span><span class="tag-sub">AIを使った防御</span>
   </div>
+  
   <div class="cf">出典: <a href="https://www.securityweek.com/chinese-cybersecurity-firms-ai-hacking-claims-draw-comparisons-to-claude-mythos/" target="_blank" rel="noopener">SecurityWeek</a>
   <em class="orig">"Chinese Cybersecurity Firm’s AI Hacking Claims Draw Comparisons to Claude Mythos"</em></div>
 </article>
@@ -187,6 +193,7 @@ gtag('config', 'G-KV7Q7SQKZX');
     <span class="tag-main" style="background:#185FA520;color:#185FA5;border-color:#185FA544">AI×セキュリティ</span>
     <span class="tag-sub">AIを使った防御</span>
   </div>
+  
   <div class="cf">出典: <a href="https://thehackernews.com/2026/04/project-glasswing-proved-ai-can-find.html" target="_blank" rel="noopener">The Hacker News</a>
   <em class="orig">"Project Glasswing Proved AI Can Find the Bugs. Who's Going to Fix Them?"</em></div>
 </article>
@@ -204,6 +211,7 @@ gtag('config', 'G-KV7Q7SQKZX');
     <span class="tag-main" style="background:#993C1D20;color:#993C1D;border-color:#993C1D44">インシデント</span>
     <span class="tag-sub">データ侵害</span><span class="tag-sub">情報漏洩</span><span class="tag-sub">個人情報流出</span>
   </div>
+  
   <div class="cf">出典: <a href="https://thehackernews.com/2026/04/toxic-combinations-when-cross-app.html" target="_blank" rel="noopener">The Hacker News</a>
   <em class="orig">"Toxic Combinations: When Cross-App Permissions Stack into Risk"</em></div>
 </article>
@@ -221,6 +229,7 @@ gtag('config', 'G-KV7Q7SQKZX');
     <span class="tag-main" style="background:#3B6D1120;color:#3B6D11;border-color:#3B6D1144">ビジネス・技術動向</span>
     <span class="tag-sub">市場トレンド</span>
   </div>
+  
   <div class="cf">出典: <a href="https://www.technologyreview.com/2026/04/22/1135295/ai-needs-a-strong-data-fabric-to-deliver-business-value/" target="_blank" rel="noopener">MIT Tech Review</a>
   <em class="orig">"AI needs a strong data fabric to deliver business value"</em></div>
 </article>
@@ -238,6 +247,7 @@ gtag('config', 'G-KV7Q7SQKZX');
     <span class="tag-main" style="background:#7F77DD20;color:#7F77DD;border-color:#7F77DD44">AIリスク</span>
     <span class="tag-sub">プライバシー侵害</span><span class="tag-sub">敵対的攻撃</span>
   </div>
+  
   <div class="cf">出典: <a href="https://arxiv.org/abs/2604.19891" target="_blank" rel="noopener">arXiv cs.CR</a>
   <em class="orig">"A Data-Free Membership Inference Attack on Federated Learning in Hardware Assurance"</em></div>
 </article>
@@ -312,6 +322,12 @@ gtag('config', 'G-KV7Q7SQKZX');
       <div id="imp-bars"></div>
     </div>
 
+    <div class="dc" style="grid-column:1/-1">
+      <div class="dc-title">影響レイヤー分布（過去7日）</div>
+      <div class="dc-sub">各記事が影響するインフラ・ガバナンス層の内訳</div>
+      <div id="layer-bars"></div>
+    </div>
+
   </div>
 </div>
 
@@ -374,10 +390,11 @@ gtag('config', 'G-KV7Q7SQKZX');
 </footer>
 
 <script>
-const ANA = {"main_30": [], "main_7": [], "sub_7": [], "spikes": [], "imp_list": [], "total_articles": 0, "total_days": 0, "today_implication": ""};
+const ANA = {"main_30": [], "main_7": [], "sub_7": [], "spikes": [], "imp_list": [], "total_articles": 0, "total_days": 0, "today_implication": "", "layer_7": []};
 const TAX = {"attack": {"label": "攻撃・脅威", "subs": ["ランサムウェア", "フィッシング", "APT", "マルウェア", "DDoS", "サプライチェーン攻撃", "ソーシャルエンジニアリング", "クレデンシャル窃取"]}, "vuln": {"label": "脆弱性", "subs": ["ゼロデイ", "CVE", "エクスプロイト", "パッチ未適用", "設定ミス", "認証バイパス"]}, "ai_sec": {"label": "AI×セキュリティ", "subs": ["プロンプトインジェクション", "モデル汚染", "敵対的攻撃", "LLMセキュリティ", "AIを使った防御", "AIを使った攻撃", "モデル逆転攻撃"]}, "ai_risk": {"label": "AIリスク", "subs": ["ハルシネーション", "バイアス・差別", "プライバシー侵害", "誤情報生成", "著作権", "安全性評価", "アライメント"]}, "policy": {"label": "規制・政策", "subs": ["EU AI法", "NIST", "CISA勧告", "国内規制", "国際連携", "コンプライアンス", "標準化"]}, "incident": {"label": "インシデント", "subs": ["データ侵害", "サービス停止", "情報漏洩", "金融被害", "個人情報流出"]}, "biz_tech": {"label": "ビジネス・技術動向", "subs": ["資金調達", "M&A", "製品リリース", "市場トレンド", "研究・論文", "スタートアップ"]}};
 const IMP_COLORS = {"高":"#E24B4A","中":"#BA7517","低":"#639922"};
 const MAIN_COLORS = {"attack":"#E24B4A","vuln":"#BA7517","ai_sec":"#378ADD","ai_risk":"#7F77DD","policy":"#1D9E75","incident":"#D85A30","biz_tech":"#639922"};
+const LAYER_COLORS = {"デバイス/エッジ":"#639922","ネットワーク":"#378ADD","クラウド/サーバー":"#1D9E75","アプリ/API":"#BA7517","データ/AI":"#7F77DD","ガバナンス/規制":"#98968e"};
 
 function showTab(id) {
   var valid = ['today','popular','archive','trend','about'];
@@ -456,6 +473,12 @@ function initDashboard() {
   // 重要度バー
   const impData = [["高", impCount["高"]], ["中", impCount["中"]], ["低", impCount["低"]]].filter(([,v])=>v>0);
   renderBars('imp-bars', impData, label => IMP_COLORS[label]||'#888');
+
+  // 影響レイヤーバー
+  renderBars('layer-bars',
+    (ANA.layer_7||[]),
+    label => LAYER_COLORS[label]||'#378ADD'
+  );
 
   // 大項目フィルターボタン生成
   const filterEl = document.getElementById('main-filter');

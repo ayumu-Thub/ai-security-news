@@ -36,6 +36,12 @@ def tag_main_badge(main_id, main_label):
 def tag_sub_badge(sub):
     return f'<span class="tag-sub">{sub}</span>'
 
+def tag_layer_badge(layer):
+    return f'<span class="tag-layer">{layer}</span>'
+
+def tag_kw_badge(kw):
+    return f'<span class="tag-kw">{kw}</span>'
+
 def article_card(a, rank=None):
     rank_html    = f'<span class="rank">#{rank}</span>' if rank else ""
     pub          = a.get("published","")[:10]
@@ -47,6 +53,9 @@ def article_card(a, rank=None):
     main_id      = a.get("tag_main_id","attack")
     main_label   = a.get("tag_main_label","攻撃・脅威")
     subs_html    = "".join(tag_sub_badge(s) for s in a.get("tag_subs",[]))
+    layers_html  = "".join(tag_layer_badge(l) for l in a.get("affected_layers",[]))
+    kws_html     = "".join(tag_kw_badge(k) for k in a.get("related_keywords",[])[:5])
+    meta_row     = f'<div class="tags tags-meta">{layers_html}{kws_html}</div>' if (layers_html or kws_html) else ""
 
     return f"""<article class="card" data-id="{a.get('id','')}" data-main="{main_id}" onclick="countView('{a.get('id','')}')">
   <div class="cm">
@@ -62,6 +71,7 @@ def article_card(a, rank=None):
     {tag_main_badge(main_id, main_label)}
     {subs_html}
   </div>
+  {meta_row}
   <div class="cf">出典: <a href="{a.get('url','#')}" target="_blank" rel="noopener">{a.get('source_name','')}</a>
   <em class="orig">"{a.get('title','')}"</em></div>
 </article>"""
@@ -77,6 +87,7 @@ def build_analytics(history, taxonomy):
     sub_30    = Counter()
     main_7    = Counter()
     sub_7     = Counter()
+    layer_7   = Counter()
 
     for day in history[:30]:
         d = day.get("date","")
@@ -97,6 +108,8 @@ def build_analytics(history, taxonomy):
                 main_7[mid] += 1
                 for s in subs:
                     sub_7[s] += 1
+                for l in a.get("affected_layers", []):
+                    layer_7[l] += 1
 
     # スパイク検出: 過去7日で2件以上かつ過去30日平均の2倍以上
     spikes = []
@@ -124,6 +137,7 @@ def build_analytics(history, taxonomy):
         "total_articles": sum(len(d.get("articles",[])) for d in history),
         "total_days":     len(history),
         "today_implication": today_implication,
+        "layer_7": layer_7.most_common(),
     }
 
 
@@ -224,6 +238,9 @@ a{{color:inherit;text-decoration:none}}
 .tags{{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:6px}}
 .tag-main{{font-size:10px;padding:2px 8px;border-radius:99px;border:1px solid;font-weight:600}}
 .tag-sub{{font-size:10px;padding:2px 7px;border-radius:99px;background:#222220;border:1px solid #333330;color:var(--muted)}}
+.tags-meta{{margin-top:3px}}
+.tag-layer{{font-size:9px;padding:1px 6px;border-radius:99px;background:#0d2233;border:1px solid #1a4060;color:#6aabdd}}
+.tag-kw{{font-size:9px;padding:1px 5px;border-radius:99px;background:#1e1e1c;border:1px solid #2e2e2c;color:#6a6860}}
 .cf{{font-size:10px;color:var(--dim)}}
 .cf a{{color:var(--accent)}}
 .orig{{font-style:italic;margin-left:4px}}
@@ -353,6 +370,12 @@ gtag('config', 'G-KV7Q7SQKZX');
       <div id="imp-bars"></div>
     </div>
 
+    <div class="dc" style="grid-column:1/-1">
+      <div class="dc-title">影響レイヤー分布（過去7日）</div>
+      <div class="dc-sub">各記事が影響するインフラ・ガバナンス層の内訳</div>
+      <div id="layer-bars"></div>
+    </div>
+
   </div>
 </div>
 
@@ -419,6 +442,7 @@ const ANA = {ana_json};
 const TAX = {tax_json};
 const IMP_COLORS = {{"高":"#E24B4A","中":"#BA7517","低":"#639922"}};
 const MAIN_COLORS = {{"attack":"#E24B4A","vuln":"#BA7517","ai_sec":"#378ADD","ai_risk":"#7F77DD","policy":"#1D9E75","incident":"#D85A30","biz_tech":"#639922"}};
+const LAYER_COLORS = {{"デバイス/エッジ":"#639922","ネットワーク":"#378ADD","クラウド/サーバー":"#1D9E75","アプリ/API":"#BA7517","データ/AI":"#7F77DD","ガバナンス/規制":"#98968e"}};
 
 function showTab(id) {{
   var valid = ['today','popular','archive','trend','about'];
@@ -497,6 +521,12 @@ function initDashboard() {{
   // 重要度バー
   const impData = [["高", impCount["高"]], ["中", impCount["中"]], ["低", impCount["低"]]].filter(([,v])=>v>0);
   renderBars('imp-bars', impData, label => IMP_COLORS[label]||'#888');
+
+  // 影響レイヤーバー
+  renderBars('layer-bars',
+    (ANA.layer_7||[]),
+    label => LAYER_COLORS[label]||'#378ADD'
+  );
 
   // 大項目フィルターボタン生成
   const filterEl = document.getElementById('main-filter');

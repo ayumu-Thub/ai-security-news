@@ -65,6 +65,9 @@ a{color:inherit;text-decoration:none}
 .tags{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:6px}
 .tag-main{font-size:10px;padding:2px 8px;border-radius:99px;border:1px solid;font-weight:600}
 .tag-sub{font-size:10px;padding:2px 7px;border-radius:99px;background:#222220;border:1px solid #333330;color:var(--muted)}
+.tags-meta{margin-top:3px}
+.tag-layer{font-size:9px;padding:1px 6px;border-radius:99px;background:#0d2233;border:1px solid #1a4060;color:#6aabdd}
+.tag-kw{font-size:9px;padding:1px 5px;border-radius:99px;background:#1e1e1c;border:1px solid #2e2e2c;color:#6a6860}
 .cf{font-size:10px;color:var(--dim)}
 .cf a{color:var(--accent)}
 .orig{font-style:italic;margin-left:4px}
@@ -136,6 +139,7 @@ gtag('config', 'G-KV7Q7SQKZX');
     <span class="tag-main" style="background:#BA751720;color:#BA7517;border-color:#BA751744">脆弱性</span>
     <span class="tag-sub">エクスプロイト</span><span class="tag-sub">設定ミス</span>
   </div>
+  
   <div class="cf">出典: <a href="https://www.cisa.gov/news-events/ics-advisories/icsa-26-111-10" target="_blank" rel="noopener">CISA</a>
   <em class="orig">"Silex Technology SD-330AC and AMC Manager"</em></div>
 </article>
@@ -153,6 +157,7 @@ gtag('config', 'G-KV7Q7SQKZX');
     <span class="tag-main" style="background:#BA751720;color:#BA7517;border-color:#BA751744">脆弱性</span>
     <span class="tag-sub">認証バイパス</span><span class="tag-sub">パッチ未適用</span>
   </div>
+  
   <div class="cf">出典: <a href="https://www.cisa.gov/news-events/ics-advisories/icsa-26-111-02" target="_blank" rel="noopener">CISA</a>
   <em class="orig">"Siemens RUGGEDCOM CROSSBOW Secure Access Manager Primary"</em></div>
 </article>
@@ -170,6 +175,7 @@ gtag('config', 'G-KV7Q7SQKZX');
     <span class="tag-main" style="background:#BA751720;color:#BA7517;border-color:#BA751744">脆弱性</span>
     <span class="tag-sub">エクスプロイト</span><span class="tag-sub">情報漏洩</span>
   </div>
+  
   <div class="cf">出典: <a href="https://www.cisa.gov/news-events/ics-advisories/icsa-26-111-01" target="_blank" rel="noopener">CISA</a>
   <em class="orig">"Siemens TPM 2.0"</em></div>
 </article>
@@ -187,6 +193,7 @@ gtag('config', 'G-KV7Q7SQKZX');
     <span class="tag-main" style="background:#BA751720;color:#BA7517;border-color:#BA751744">脆弱性</span>
     <span class="tag-sub">エクスプロイト</span><span class="tag-sub">パッチ未適用</span>
   </div>
+  
   <div class="cf">出典: <a href="https://www.cisa.gov/news-events/ics-advisories/icsa-26-111-12" target="_blank" rel="noopener">CISA</a>
   <em class="orig">"SenseLive X3050"</em></div>
 </article>
@@ -204,6 +211,7 @@ gtag('config', 'G-KV7Q7SQKZX');
     <span class="tag-main" style="background:#BA751720;color:#BA7517;border-color:#BA751744">脆弱性</span>
     <span class="tag-sub">設定ミス</span><span class="tag-sub">エクスプロイト</span>
   </div>
+  
   <div class="cf">出典: <a href="https://www.cisa.gov/news-events/ics-advisories/icsa-26-111-04" target="_blank" rel="noopener">CISA</a>
   <em class="orig">"Siemens Analytics Toolkit"</em></div>
 </article>
@@ -278,6 +286,12 @@ gtag('config', 'G-KV7Q7SQKZX');
       <div id="imp-bars"></div>
     </div>
 
+    <div class="dc" style="grid-column:1/-1">
+      <div class="dc-title">影響レイヤー分布（過去7日）</div>
+      <div class="dc-sub">各記事が影響するインフラ・ガバナンス層の内訳</div>
+      <div id="layer-bars"></div>
+    </div>
+
   </div>
 </div>
 
@@ -340,10 +354,11 @@ gtag('config', 'G-KV7Q7SQKZX');
 </footer>
 
 <script>
-const ANA = {"main_30": [], "main_7": [], "sub_7": [], "spikes": [], "imp_list": [], "total_articles": 0, "total_days": 0, "today_implication": ""};
+const ANA = {"main_30": [], "main_7": [], "sub_7": [], "spikes": [], "imp_list": [], "total_articles": 0, "total_days": 0, "today_implication": "", "layer_7": []};
 const TAX = {"attack": {"label": "攻撃・脅威", "subs": ["ランサムウェア", "フィッシング", "APT", "マルウェア", "DDoS", "サプライチェーン攻撃", "ソーシャルエンジニアリング", "クレデンシャル窃取"]}, "vuln": {"label": "脆弱性", "subs": ["ゼロデイ", "CVE", "エクスプロイト", "パッチ未適用", "設定ミス", "認証バイパス"]}, "ai_sec": {"label": "AI×セキュリティ", "subs": ["プロンプトインジェクション", "モデル汚染", "敵対的攻撃", "LLMセキュリティ", "AIを使った防御", "AIを使った攻撃", "モデル逆転攻撃"]}, "ai_risk": {"label": "AIリスク", "subs": ["ハルシネーション", "バイアス・差別", "プライバシー侵害", "誤情報生成", "著作権", "安全性評価", "アライメント"]}, "policy": {"label": "規制・政策", "subs": ["EU AI法", "NIST", "CISA勧告", "国内規制", "国際連携", "コンプライアンス", "標準化"]}, "incident": {"label": "インシデント", "subs": ["データ侵害", "サービス停止", "情報漏洩", "金融被害", "個人情報流出"]}, "biz_tech": {"label": "ビジネス・技術動向", "subs": ["資金調達", "M&A", "製品リリース", "市場トレンド", "研究・論文", "スタートアップ"]}};
 const IMP_COLORS = {"高":"#E24B4A","中":"#BA7517","低":"#639922"};
 const MAIN_COLORS = {"attack":"#E24B4A","vuln":"#BA7517","ai_sec":"#378ADD","ai_risk":"#7F77DD","policy":"#1D9E75","incident":"#D85A30","biz_tech":"#639922"};
+const LAYER_COLORS = {"デバイス/エッジ":"#639922","ネットワーク":"#378ADD","クラウド/サーバー":"#1D9E75","アプリ/API":"#BA7517","データ/AI":"#7F77DD","ガバナンス/規制":"#98968e"};
 
 function showTab(id) {
   var valid = ['today','popular','archive','trend','about'];
@@ -422,6 +437,12 @@ function initDashboard() {
   // 重要度バー
   const impData = [["高", impCount["高"]], ["中", impCount["中"]], ["低", impCount["低"]]].filter(([,v])=>v>0);
   renderBars('imp-bars', impData, label => IMP_COLORS[label]||'#888');
+
+  // 影響レイヤーバー
+  renderBars('layer-bars',
+    (ANA.layer_7||[]),
+    label => LAYER_COLORS[label]||'#378ADD'
+  );
 
   // 大項目フィルターボタン生成
   const filterEl = document.getElementById('main-filter');
