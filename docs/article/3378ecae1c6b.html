@@ -3,28 +3,28 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>AIエージェントの権限委譲がもたらすセキュリティギャップと可観測性の重要性 | AI×セキュリティ ニュース日報</title>
-<meta name="description" content="AIエージェントは、企業セキュリティにおいて構造的なギャップを露呈させており、その本質は単なる新たなシステムアクターではなく、企業から権限を「委任された」アクターである点にあります。この委任された性質により、AIエージェントの行動範囲や影響">
-<meta property="og:title" content="AIエージェントの権限委譲がもたらすセキュリティギャップと可観測性の重要性">
-<meta property="og:description" content="AIエージェントは、企業セキュリティにおいて構造的なギャップを露呈させており、その本質は単なる新たなシステムアクターではなく、企業から権限を「委任された」アクターである点にあります。この委任された性質により、AIエージェントの行動範囲や影響">
-<meta property="og:url" content="https://ayudle.github.io/ai-security-news/article/cd4e35641d1d.html">
+<title>Sovereign Agentic Loops：AI推論と実行の分離による安全性確保 | AI×セキュリティ ニュース日報</title>
+<meta name="description" content="LLMエージェントが実システムでAPIコールを実行するケースが増える中、現在のアーキテクチャでは確率的なモデル出力を直接実行レイヤーに渡しており、安全性リスクを生んでいる。本論文では、モデルの正しさ、コンテキスト認識、アライメントが実行時に">
+<meta property="og:title" content="Sovereign Agentic Loops：AI推論と実行の分離による安全性確保">
+<meta property="og:description" content="LLMエージェントが実システムでAPIコールを実行するケースが増える中、現在のアーキテクチャでは確率的なモデル出力を直接実行レイヤーに渡しており、安全性リスクを生んでいる。本論文では、モデルの正しさ、コンテキスト認識、アライメントが実行時に">
+<meta property="og:url" content="https://ayudle.github.io/ai-security-news/article/3378ecae1c6b.html">
 <meta property="og:type" content="article">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="AIエージェントの権限委譲がもたらすセキュリティギャップと可観測性の重要性">
-<meta name="twitter:description" content="AIエージェントは、企業セキュリティにおいて構造的なギャップを露呈させており、その本質は単なる新たなシステムアクターではなく、企業から権限を「委任された」アクターである点にあります。この委任された性質により、AIエージェントの行動範囲や影響">
+<meta name="twitter:title" content="Sovereign Agentic Loops：AI推論と実行の分離による安全性確保">
+<meta name="twitter:description" content="LLMエージェントが実システムでAPIコールを実行するケースが増える中、現在のアーキテクチャでは確率的なモデル出力を直接実行レイヤーに渡しており、安全性リスクを生んでいる。本論文では、モデルの正しさ、コンテキスト認識、アライメントが実行時に">
 <meta property="og:image" content="https://ayudle.github.io/ai-security-news/og-image.png">
 <meta name="twitter:image" content="https://ayudle.github.io/ai-security-news/og-image.png">
-<link rel="canonical" href="https://ayudle.github.io/ai-security-news/article/cd4e35641d1d.html">
+<link rel="canonical" href="https://ayudle.github.io/ai-security-news/article/3378ecae1c6b.html">
 <link rel="icon" type="image/png" href="../favicon.png">
 <link rel="apple-touch-icon" href="../apple-touch-icon.png">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "NewsArticle",
-  "headline": "AIエージェントの権限委譲がもたらすセキュリティギャップと可観測性の重要性",
-  "description": "AIエージェントは、企業セキュリティにおいて構造的なギャップを露呈させており、その本質は単なる新たなシステムアクターではなく、企業から権限を「委任された」アクターである点にあります。この委任された性質により、AIエージェントの行動範囲や影響力が拡大し、従来のセキュリティ制御では対応しきれない新たなリスクが生じています。この課題に対処するためには、AIエージェントの活動に対する継続的な可観測性を確保",
-  "datePublished": "2026-04-24",
-  "url": "https://ayudle.github.io/ai-security-news/article/cd4e35641d1d.html",
+  "headline": "Sovereign Agentic Loops：AI推論と実行の分離による安全性確保",
+  "description": "LLMエージェントが実システムでAPIコールを実行するケースが増える中、現在のアーキテクチャでは確率的なモデル出力を直接実行レイヤーに渡しており、安全性リスクを生んでいる。本論文では、モデルの正しさ、コンテキスト認識、アライメントが実行時に保証されない問題を指摘し、モデルが構造化された意図を生成し、これを制御プレーンが実行と分離する「Sovereign Agentic Loops (SAL)」アー",
+  "datePublished": "2026-04-27",
+  "url": "https://ayudle.github.io/ai-security-news/article/3378ecae1c6b.html",
   "image": "https://ayudle.github.io/ai-security-news/og-image.png",
   "publisher": {
     "@type": "Organization",
@@ -91,28 +91,28 @@ footer{text-align:center;font-size:10px;color:var(--dim);padding:20px;border-top
 <article class="ap">
   <div class="ap-head">
     <div class="ap-meta">
-      <span class="ap-tier">専門メディア</span>
-      <span class="ap-src">The Hacker News</span>
-      <span>2026-04-24</span>
+      <span class="ap-tier">学術</span>
+      <span class="ap-src">arXiv cs.CR</span>
+      <span>2026-04-27</span>
       <span class="imp" style="color:#E24B4A;border-color:#E24B4A55">重要度 高</span>
     </div>
-    <h1 class="ap-title">AIエージェントの権限委譲がもたらすセキュリティギャップと可観測性の重要性</h1>
+    <h1 class="ap-title">Sovereign Agentic Loops：AI推論と実行の分離による安全性確保</h1>
   </div>
 
   <section class="ap-section">
     <h3 class="ap-sec-title">要約</h3>
-    <div class="ap-body">AIエージェントは、企業セキュリティにおいて構造的なギャップを露呈させており、その本質は単なる新たなシステムアクターではなく、企業から権限を「委任された」アクターである点にあります。この委任された性質により、AIエージェントの行動範囲や影響力が拡大し、従来のセキュリティ制御では対応しきれない新たなリスクが生じています。この課題に対処するためには、AIエージェントの活動に対する継続的な可観測性を確保し、その意思決定プロセスをリアルタイムで監視する仕組みが不可欠です。</div>
+    <div class="ap-body">LLMエージェントが実システムでAPIコールを実行するケースが増える中、現在のアーキテクチャでは確率的なモデル出力を直接実行レイヤーに渡しており、安全性リスクを生んでいる。本論文では、モデルの正しさ、コンテキスト認識、アライメントが実行時に保証されない問題を指摘し、モデルが構造化された意図を生成し、これを制御プレーンが実行と分離する「Sovereign Agentic Loops (SAL)」アーキテクチャを提案している。これはAIエージェントの安全な運用のための重要な設計原則となる。</div>
   </section>
 
-  <section class='ap-section'><h3 class='ap-sec-title'>CISO視点での示唆・学び</h3><div class='insight-box'><span class='insight-lbl'>示唆・学び</span>AIエージェントの導入は業務効率化に貢献する一方で、その「委任された権限」がセキュリティリスクの盲点となり得ます。CISOは、AIエージェントの設計段階からその権限範囲を最小化し、振る舞いを継続的に監視するための可観測性プラットフォームを導入することで、不正な行動や意図しない情報漏洩を防ぎ、セキュリティガバナンスを強化する必要があります。</div></section>
+  <section class='ap-section'><h3 class='ap-sec-title'>CISO視点での示唆・学び</h3><div class='insight-box'><span class='insight-lbl'>示唆・学び</span>AIエージェントの自律的な実行における安全性を確保するためには、推論と実行の分離が不可欠であり、CISOはAIエージェントのデプロイメントにおいて、厳格な制御プレーンと人間による監視・介入の仕組みを設計すべきである。特にAIエージェントリスク6階層モデルの「②ツール・実行層」のセキュリティを強化する必要がある。</div></section>
 
-  <section class='ap-section'><h3 class='ap-sec-title'>重要度判定の理由</h3><div class='imp-box'>AIエージェントは今後の主要な技術トレンドであり、そのセキュリティギャップは広範囲な影響を及ぼすため、経営レベルでの対応が求められます。</div></section>
+  <section class='ap-section'><h3 class='ap-sec-title'>重要度判定の理由</h3><div class='imp-box'>AIエージェントの安全な運用を実現するための根本的なアーキテクチャ提案であり、今後のAIシステム設計の標準となる可能性を秘めているため。</div></section>
 
   <section class="ap-section">
     <h3 class="ap-sec-title">タグ</h3>
     <div class="tags-box">
       <span class="tag-main" style="background:#185FA520;color:#185FA5;border-color:#185FA544">AI×セキュリティ</span>
-      <span class="tag-sub">LLMセキュリティ</span><span class="tag-sub">AIを使った防御</span>
+      <span class="tag-sub">AIを使った防御</span><span class="tag-sub">研究・論文</span>
     </div>
   </section>
 
@@ -120,17 +120,16 @@ footer{text-align:center;font-size:10px;color:var(--dim);padding:20px;border-top
     <h3 class="ap-sec-title">元記事情報</h3>
     <div class="orig-box">
       <div class="lbl">原題</div>
-      <div>Bridging the AI Agent Authority Gap: Continuous Observability as the Decision Engine</div>
+      <div>Sovereign Agentic Loops: Decoupling AI Reasoning from Execution in Real-World Systems</div>
       <div class="lbl" style="margin-top:10px">ソース・公開日</div>
-      <div>The Hacker News / 2026-04-24</div>
-      <div class="orig-en">The AI Agent Authority Gap - From Ungoverned to Delegation
-As discussed in our previous article, AI agents are exposing a structural gap in enterprise security, but the problem is often framed too narrowly.
-The issue is not simply that agents are new actors. It is that agents are delegated actors. T</div>
+      <div>arXiv cs.CR / 2026-04-27</div>
+      <div class="orig-en">arXiv:2604.22136v1 Announce Type: new 
+Abstract: Large language model (LLM) agents increasingly issue API calls that mutate real systems, yet many current architectures pass stochastic model outputs directly to execution layers. We argue that this coupling creates a safety risk because model correct</div>
     </div>
     <div class="actions">
-      <a href="https://thehackernews.com/2026/04/bridging-ai-agent-authority-gap.html" target="_blank" rel="noopener" class="btn btn-primary">🔗 元記事を読む（外部サイト）</a>
-      <a href="https://x.com/intent/post?text=%E3%80%90AI%C3%97%E3%82%BB%E3%82%AD%E3%83%A5%E3%83%AA%E3%83%86%E3%82%A3%E3%83%8B%E3%83%A5%E3%83%BC%E3%82%B9%E3%80%91%0A%0AAI%E3%82%A8%E3%83%BC%E3%82%B8%E3%82%A7%E3%83%B3%E3%83%88%E3%81%AE%E6%A8%A9%E9%99%90%E5%A7%94%E8%AD%B2%E3%81%8C%E3%82%82%E3%81%9F%E3%82%89%E3%81%99%E3%82%BB%E3%82%AD%E3%83%A5%E3%83%AA%E3%83%86%E3%82%A3%E3%82%AE%E3%83%A3%E3%83%83%E3%83%97%E3%81%A8%E5%8F%AF%E8%A6%B3%E6%B8%AC%E6%80%A7%E3%81%AE%E9%87%8D%E8%A6%81%E6%80%A7%0A%0A%23AI%E3%82%BB%E3%82%AD%E3%83%A5%E3%83%AA%E3%83%86%E3%82%A3%20%23LLM%E3%82%BB%E3%82%AD%E3%83%A5%E3%83%AA%E3%83%86%E3%82%A3%20%23AI%E9%98%B2%E5%BE%A1&url=https%3A%2F%2Fayudle.github.io%2Fai-security-news%2Farticle%2Fcd4e35641d1d.html" target="_blank" rel="noopener" class="btn btn-secondary">Xでシェア</a>
-      <button onclick="navigator.clipboard.writeText('https://ayudle.github.io/ai-security-news/article/cd4e35641d1d.html').then(()=>alert('URLをコピーしました'))" class="btn btn-secondary">📋 URLをコピー</button>
+      <a href="https://arxiv.org/abs/2604.22136" target="_blank" rel="noopener" class="btn btn-primary">🔗 元記事を読む（外部サイト）</a>
+      <a href="https://x.com/intent/post?text=%E3%80%90AI%C3%97%E3%82%BB%E3%82%AD%E3%83%A5%E3%83%AA%E3%83%86%E3%82%A3%E3%83%8B%E3%83%A5%E3%83%BC%E3%82%B9%E3%80%91%0A%0ASovereign%20Agentic%20Loops%EF%BC%9AAI%E6%8E%A8%E8%AB%96%E3%81%A8%E5%AE%9F%E8%A1%8C%E3%81%AE%E5%88%86%E9%9B%A2%E3%81%AB%E3%82%88%E3%82%8B%E5%AE%89%E5%85%A8%E6%80%A7%E7%A2%BA%E4%BF%9D%0A%0A%23AI%E3%82%BB%E3%82%AD%E3%83%A5%E3%83%AA%E3%83%86%E3%82%A3%20%23AI%E9%98%B2%E5%BE%A1&url=https%3A%2F%2Fayudle.github.io%2Fai-security-news%2Farticle%2F3378ecae1c6b.html" target="_blank" rel="noopener" class="btn btn-secondary">Xでシェア</a>
+      <button onclick="navigator.clipboard.writeText('https://ayudle.github.io/ai-security-news/article/3378ecae1c6b.html').then(()=>alert('URLをコピーしました'))" class="btn btn-secondary">📋 URLをコピー</button>
     </div>
   </section>
 

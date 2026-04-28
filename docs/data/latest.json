@@ -1,146 +1,469 @@
 {
-  "updated": "2026-04-27T07:37:38.755822+09:00",
-  "today": "2026-04-27",
+  "updated": "2026-04-28T10:11:58.581133+09:00",
+  "today": "2026-04-28",
   "articles": [
     {
-      "id": "8af055a7481c",
-      "title": "WHY ARE YOU LIKE THIS",
-      "summary": "<p>@scottjla <a href=\"https://twitter.com/scottjla/status/2047535371664457863\">on Twitter</a> in reply to my <a href=\"https://simonwillison.net/tags/pelican-riding-a-bicycle/\">pelican riding a bicycle</a> benchmark:</p>\n<blockquote>\n<p>I feel like we need to stack these tests now</p>\n<p><img alt=\"AI generated image. A pelican is riding a bicycle along a dirt track, chased by a police car. The pelican looks panicked, likely because there is an astronaut (with prehensile toes for some reason) ridi",
-      "url": "https://simonwillison.net/2026/Apr/25/why-are-you-like-this/#atom-everything",
+      "id": "a2214001719d",
+      "title": "Parsing Agentic Offensive Security's Existential Threat",
+      "summary": "Some fear frontier LLMs like Claude Mythos and Anthropic's GPT-5.5 will lead to cybersecurity annihilation. Ari Herbert-Voss notes this could be an opportunity.",
+      "url": "https://www.darkreading.com/cyber-risk/industrialized-exploitation-agentic-offensive-security-existential-threat",
       "ai_score": 2,
-      "source_name": "Simon Willison",
+      "source_name": "Dark Reading",
       "source_tier": "B",
-      "published": "2026-04-26T01:44:01+09:00",
-      "title_ja": "AI生成画像の異常性とハルシネーションリスク",
-      "summary_ja": "本記事は、AIが生成した現実離れした奇妙な画像（自転車に乗るペリカンを警察が追跡する様子）について言及しています。これは、AIモデルが与えられたプロンプトに対して、意図せず不合理なコンテンツを生成するハルシネーションの典型例を示唆します。AIの予測不可能性と出力制御の難しさが浮き彫りになっています。",
-      "insight": "AIシステムの導入に際し、ハルシネーションによる誤情報生成や不適切なコンテンツ出力のリスクはビジネスに深刻な影響を及ぼし得ます。CISOは、生成AIの出力に対する品質管理、ファクトチェック体制、および悪用される可能性のあるコンテンツ生成に対する防御策とガバナンス体制を早期に構築すべきです。",
-      "importance": "中",
-      "importance_reason": "AIの基本的なリスク特性を示すものであり、直接的な攻撃や脆弱性ではないものの、AIの信頼性に関わる重要な側面であるため。",
-      "tag_main_id": "ai_risk",
-      "tag_main_label": "AIリスク",
+      "published": "2026-04-27T22:00:00+09:00",
+      "title_ja": "エージェント型AIによる攻撃の「実存的脅威」と機会",
+      "summary_ja": "Claude MythosやGPT-5.5のような最先端LLMが、サイバーセキュリティに壊滅的な影響を与えるという懸念が浮上している。一部専門家は、これらエージェント型AIが脆弱性発見やエクスプロイト生成を自動化することで、攻撃側の優位性を高める可能性があると指摘。しかし、この進化を防御側の新たな機会と捉え、セキュリティ戦略の根本的な見直しを迫る議論も行われている。",
+      "insight": "エージェント型AIによる攻撃の自動化・高度化は避けられず、経営層はAIを活用した自動防御とインシデント対応の強化に戦略的に投資すべきである。特に、AIエージェントの自律的動作を監視し、異常を即座に検知・封じ込める能力は、ビジネス継続性の鍵となる。",
+      "importance": "高",
+      "importance_reason": "エージェント型AIによる攻撃の自動化・高度化は、既存のセキュリティパラダイムを根本的に変え、経営レベルでの戦略的対応が不可欠となるため。",
+      "tag_main_id": "ai_sec",
+      "tag_main_label": "AI×セキュリティ",
       "tag_subs": [
-        "ハルシネーション",
-        "誤情報生成",
-        "安全性評価"
+        "AIを使った攻撃",
+        "AIを使った防御"
       ],
       "affected_layers": [
         "データ/AI",
         "ガバナンス/規制"
       ],
       "related_keywords": [
-        "AI生成画像",
-        "ハルシネーション",
-        "コンテンツ生成",
-        "AI倫理",
-        "予測不可能性"
+        "エージェント型AI",
+        "LLM",
+        "サイバー攻撃",
+        "自動化",
+        "脅威インテリジェンス"
       ],
       "views": 0
     },
     {
-      "id": "fea00393f3cb",
-      "title": "Quoting Romain Huet",
-      "summary": "<blockquote cite=\"https://twitter.com/romainhuet/status/2047955381578838357\"><p>Since GPT-5.4, we’ve unified Codex and the main model into a single system, so there’s no separate coding line anymore.</p>\n<p>GPT-5.5 takes this further, with strong gains in agentic coding, computer use, and any task on a computer.</p></blockquote>\n<p class=\"cite\">&mdash; <a href=\"https://twitter.com/romainhuet/status/2047955381578838357\">Romain Huet</a>, confirming OpenAI won't release a GPT-5.5-Codex model</p>\n\n ",
-      "url": "https://simonwillison.net/2026/Apr/25/romain-huet/#atom-everything",
+      "id": "794d9246a3ec",
+      "title": "Malicious AI Prompt Injection Attacks Increasing, but Sophistication Still Low: Google",
+      "summary": "<p>The tech giant found that many indirect prompt injection attempts are harmless, but some malicious exploits have also been identified.</p>\n<p>The post <a href=\"https://www.securityweek.com/malicious-ai-prompt-injection-attacks-increasing-but-sophistication-still-low-google/\">Malicious AI Prompt Injection Attacks Increasing, but Sophistication Still Low: Google</a> appeared first on <a href=\"https://www.securityweek.com\">SecurityWeek</a>.</p>",
+      "url": "https://www.securityweek.com/malicious-ai-prompt-injection-attacks-increasing-but-sophistication-still-low-google/",
+      "ai_score": 2,
+      "source_name": "SecurityWeek",
+      "source_tier": "B",
+      "published": "2026-04-27T21:08:19+09:00",
+      "title_ja": "悪意あるAIプロンプトインジェクション攻撃が増加するも、巧妙さは依然低い：Google報告",
+      "summary_ja": "Googleの調査によると、悪意のあるプロンプトインジェクション攻撃が増加しているものの、その手口の巧妙さはまだ低い段階にある。多くの間接的なプロンプトインジェクションは無害だが、一部では悪意のあるエクスプロイトも確認されており、AIシステム固有の脆弱性として監視と対策が求められる。これはAIエージェントの普及に伴い、さらに洗練される可能性を秘めている。",
+      "insight": "プロンプトインジェクションは現在比較的単純だが、AIエージェントの普及に伴い高度化するリスクがあるため、開発・運用フェーズでのセキュリティテストと入力検証の強化が喫緊の課題である。特にユーザー入力がLLMに渡る経路でのサニタイズを徹底し、AIエージェントリスクモデルの「モデル・推論層」への対応を優先すべき。",
+      "importance": "中",
+      "importance_reason": "AIシステム特有の初期段階の攻撃手法であり、今後の洗練化に備え、予防的な対策を講じる必要があるため。",
+      "tag_main_id": "ai_sec",
+      "tag_main_label": "AI×セキュリティ",
+      "tag_subs": [
+        "プロンプトインジェクション",
+        "LLMセキュリティ"
+      ],
+      "affected_layers": [
+        "アプリ/API",
+        "データ/AI"
+      ],
+      "related_keywords": [
+        "プロンプトインジェクション",
+        "AI攻撃",
+        "LLMセキュリティ",
+        "Google",
+        "入力検証"
+      ],
+      "views": 0
+    },
+    {
+      "id": "5e81c46560ba",
+      "title": "Mythos Changed the Math on Vulnerability Discovery. Most Teams Aren't Ready for the Remediation Side",
+      "summary": "Anthropic’s Claude Mythos Preview has dominated security discussions since its April 7 announcement. Early reporting describes a powerful cybersecurity-focused AI system capable of identifying vulnerabilities at scale and raising serious questions about how quickly organizations can validate, prioritize, and remediate what it finds.\nThe debate that followed has mostly focused on the right",
+      "url": "https://thehackernews.com/2026/04/mythos-changed-math-on-vulnerability.html",
+      "ai_score": 2,
+      "source_name": "The Hacker News",
+      "source_tier": "B",
+      "published": "2026-04-27T20:58:00+09:00",
+      "title_ja": "Claude Mythosが脆弱性発見の常識を変える中、多くの組織は修正対応に遅れ",
+      "summary_ja": "AnthropicのClaude Mythos Previewは、セキュリティ特化型AIとして大規模な脆弱性特定能力を持つことが示されており、セキュリティ業界で大きな注目を集めている。このAIの能力は、組織が発見された脆弱性を迅速に検証、優先順位付け、そして修正する能力を圧倒的に超えつつある現状を浮き彫りにしている。多くのセキュリティチームは、この新たなスピードに対応する準備ができていない。",
+      "insight": "AIによる脆弱性特定能力の劇的な向上は、防御側の生産性向上にも寄与するが、同時に既存の脆弱性管理・修正プロセスの抜本的な見直しを迫る。CISOは、自動化された修正ワークフローとAIを活用した脆弱性優先順位付けシステムの導入を急ぎ、レメディエーションのスピードを加速すべきである。",
+      "importance": "高",
+      "importance_reason": "AIによる脆弱性発見能力の向上は、従来の脆弱性管理サイクルを根本的に変え、組織の対応能力が追いつかないリスクがあるため。",
+      "tag_main_id": "ai_sec",
+      "tag_main_label": "AI×セキュリティ",
+      "tag_subs": [
+        "AIを使った防御"
+      ],
+      "affected_layers": [
+        "アプリ/API",
+        "データ/AI",
+        "ガバナンス/規制"
+      ],
+      "related_keywords": [
+        "Claude Mythos",
+        "脆弱性管理",
+        "自動化",
+        "レメディエーション",
+        "セキュリティチーム"
+      ],
+      "views": 0
+    },
+    {
+      "id": "35b19ebc7468",
+      "title": "Tracking the history of the now-deceased OpenAI Microsoft AGI clause",
+      "summary": "<p>For many years, Microsoft and OpenAI's relationship has included a weird clause saying that, should AGI be achieved, Microsoft's commercial IP rights to OpenAI's technology would be null and void. That clause appeared to end today. I decided to try and track its expression over time on <a href=\"https://openai.com/\">openai.com</a>.</p>\n<p>OpenAI, July 22nd 2019 in <a href=\"https://openai.com/index/microsoft-invests-in-and-partners-with-openai/\">Microsoft invests in and partners with OpenAI to ",
+      "url": "https://simonwillison.net/2026/Apr/27/now-deceased-agi-clause/#atom-everything",
       "ai_score": 2,
       "source_name": "Simon Willison",
       "source_tier": "B",
-      "published": "2026-04-25T21:06:55+09:00",
-      "title_ja": "GPT-5.5におけるAIエージェントの自律的コーディング能力向上",
-      "summary_ja": "OpenAIのRomain Huet氏の発言によると、GPT-5.4でCodexモデルがメインモデルに統合され、GPT-5.5ではエージェントによるコーディングやコンピュータ操作タスクで大幅な進歩を遂げたとのことです。これは、AIエージェントが自律的にコードを生成し、システム上で操作を実行する能力が急速に強化されていることを示唆しています。",
-      "insight": "AIエージェントが自律的にコードを生成し、コンピュータ上でタスクを実行する能力の向上は、業務効率化の大きな機会であると同時に、制御不能なエージェントの暴走や意図しないシステム変更、脆弱性生成といった新たなセキュリティリスクを生じさせます。CISOは、AIエージェントの権限管理、行動監査、およびセキュアな開発・運用ガイドライン策定を急務と捉えるべきです。",
-      "importance": "高",
-      "importance_reason": "AI技術の根本的な進化が、セキュリティモデルとリスク管理フレームワークに抜本的な変革を要求するため。",
+      "published": "2026-04-28T03:38:17+09:00",
+      "title_ja": "OpenAIとMicrosoft間のAGI条項の消滅を追跡",
+      "summary_ja": "かつてMicrosoftとOpenAIの提携には、「AGI（汎用人工知能）達成時にMicrosoftの商用IP権が無効になる」という特異な条項が存在したが、これが最近消滅したと報じられている。この条項の変遷はOpenAIのウェブサイト上で追跡され、両社の戦略的関係とAGIに対する認識の変化を示唆している。これは、今後のAI技術の商用利用とIP戦略に影響を与える可能性がある。",
+      "insight": "AGI条項の消滅は、OpenAIとMicrosoftの戦略的提携の変化を示唆し、将来的なAI技術の商用利用とIP戦略に影響を与える可能性がある。経営層は、主要なAIプロバイダーの動向とビジネス関係の変化を注視し、自社のAI戦略への影響を評価すべきである。",
+      "importance": "中",
+      "importance_reason": "大手AI企業の提携条件の変更は、将来的なAI技術の商用利用と市場競争に影響を及ぼす可能性があるため。",
       "tag_main_id": "biz_tech",
       "tag_main_label": "ビジネス・技術動向",
       "tag_subs": [
-        "製品リリース",
-        "市場トレンド",
-        "研究・論文"
+        "市場トレンド"
+      ],
+      "affected_layers": [
+        "ガバナンス/規制"
+      ],
+      "related_keywords": [
+        "OpenAI",
+        "Microsoft",
+        "AGI",
+        "IP権",
+        "提携関係"
+      ],
+      "views": 0
+    },
+    {
+      "id": "370be1499991",
+      "title": "Elon Musk and Sam Altman are going to court over OpenAI’s future",
+      "summary": "After a yearslong legal feud, Elon Musk and OpenAI CEO Sam Altman are heading to trial this week in Northern California in a case that could have sweeping consequences. Ahead of OpenAI’s highly anticipated IPO, the court could rule on whether the company is allowed to exist as a for-profit enterprise and might even oust&#8230;",
+      "url": "https://www.technologyreview.com/2026/04/27/1136466/elon-musk-and-sam-altman-are-going-to-court-over-openais-future/",
+      "ai_score": 2,
+      "source_name": "MIT Tech Review",
+      "source_tier": "B",
+      "published": "2026-04-28T07:52:57+09:00",
+      "title_ja": "イーロン・マスクとサム・アルトマン、OpenAIの未来を巡り法廷へ",
+      "summary_ja": "長年の法廷闘争を経て、イーロン・マスクとOpenAIのCEOサム・アルトマンが、同社の将来を巡りカリフォルニア北部で裁判に臨む。この訴訟は、OpenAIが営利企業として存続を許されるか、あるいは経営陣が交代するかなど、同社のIPOを控えた重要な局面で広範な影響を与える可能性を秘めている。結果はAI業界全体に波及するだろう。",
+      "insight": "主要なAIサービスプロバイダーの経営体制と法的地位の不安定さは、同社の技術ロードマップやサービス提供に不確実性をもたらす。CISOは、AIサプライヤーのガバナンスリスクを評価し、サプライチェーンの安定性確保に向けた代替戦略やリスクヘッジを検討する必要がある。",
+      "importance": "高",
+      "importance_reason": "主要なAI企業の法的・経営上の問題は、AI市場全体に不確実性をもたらし、サプライチェーンリスクに直結するため。",
+      "tag_main_id": "biz_tech",
+      "tag_main_label": "ビジネス・技術動向",
+      "tag_subs": [
+        "市場トレンド"
+      ],
+      "affected_layers": [
+        "ガバナンス/規制"
+      ],
+      "related_keywords": [
+        "OpenAI",
+        "イーロン・マスク",
+        "サム・アルトマン",
+        "訴訟",
+        "IPO"
+      ],
+      "views": 0
+    },
+    {
+      "id": "a47d3e3f135f",
+      "title": "Rebuilding the data stack for AI",
+      "summary": "Artificial intelligence may be dominating boardroom agendas, but many enterprises are discovering that the biggest obstacle to meaningful adoption is the state of their data. While consumer-facing AI tools have dazzled users with speed and ease, enterprise leaders are discovering that deploying AI at scale requires something far less glamorous but far more consequential: data&#8230;",
+      "url": "https://www.technologyreview.com/2026/04/27/1136322/rebuilding-the-data-stack-for-ai/",
+      "ai_score": 2,
+      "source_name": "MIT Tech Review",
+      "source_tier": "B",
+      "published": "2026-04-27T22:00:00+09:00",
+      "title_ja": "AIのためのデータスタック再構築の必要性",
+      "summary_ja": "AIが企業の最優先課題となる中、多くの企業はAI導入の最大の障害が既存のデータ基盤にあることを認識している。コンシューマー向けAIツールがその利便性でユーザーを魅了する一方で、エンタープライズでAIを大規模に展開するには、見栄えはしないが極めて重要なデータスタックの再構築が不可欠である。質の高いデータの収集、管理、統合がAIの成功には欠かせない要素となる。",
+      "insight": "AI導入の成功には、セキュアで高品質なデータ基盤が不可欠であり、CISOはデータガバナンス、データセキュリティ、データプライバシーをAI戦略の中心に据える必要がある。データの信頼性と完全性を確保するセキュリティ設計が、AI活用によるビジネス価値創出の前提となる。",
+      "importance": "中",
+      "importance_reason": "AIのビジネス活用におけるデータ基盤の重要性は普遍的であり、そのセキュリティとガバナンスはAI戦略と切っても切り離せない要素であるため。",
+      "tag_main_id": "biz_tech",
+      "tag_main_label": "ビジネス・技術動向",
+      "tag_subs": [
+        "市場トレンド"
       ],
       "affected_layers": [
         "データ/AI",
-        "アプリ/API",
         "ガバナンス/規制"
       ],
       "related_keywords": [
-        "GPT-5.5",
-        "AIエージェント",
-        "自律コーディング",
-        "コンピュータ利用",
-        "OpenAI"
+        "データスタック",
+        "AI導入",
+        "データガバナンス",
+        "データセキュリティ",
+        "データ品質"
       ],
       "views": 0
     },
     {
-      "id": "242d35ba6ce4",
-      "title": "American utility firm Itron discloses breach of internal IT network",
-      "summary": "Itron, Inc. has disclosed, via an 8-K filing with the U.S. Securities and Exchange Commission (SEC), a cybersecurity incident in which an unauthorized third party accessed certain internal systems. [...]",
-      "url": "https://www.bleepingcomputer.com/news/security/american-utility-firm-itron-discloses-breach-of-internal-it-network/",
-      "ai_score": 1,
-      "source_name": "Bleeping Computer",
-      "source_tier": "B",
-      "published": "2026-04-26T23:22:34+09:00",
-      "title_ja": "公益事業向け企業Itron、内部ITネットワーク侵害をSECに開示",
-      "summary_ja": "米国の公益事業向け技術企業であるItron, Inc.が、不正な第三者による内部ITシステムへのアクセスを伴うサイバーセキュリティインシデントをSEC（米国証券取引委員会）に8-Kファイリングを通じて開示しました。これにより、同社の特定の内部システムが侵害されたことが公になりました。",
-      "insight": "公益事業サプライチェーンの一部を担う企業の侵害は、OT/ICSセキュリティへの波及リスクも考慮し、より広範な影響評価が必要です。CISOは、自社のサプライチェーンに含まれるIT/OTベンダーへのセキュリティ評価を強化し、NIST CSFなどのフレームワークに基づいたインシデント対応計画と規制当局への開示義務を含むコンプライアンス体制を確認する必要があります。",
-      "importance": "中",
-      "importance_reason": "公益事業関連企業のインシデントであり、SECへの開示義務が生じる点で、コンプライアンスと広範な影響評価の重要性を示すため。",
-      "tag_main_id": "incident",
-      "tag_main_label": "インシデント",
-      "tag_subs": [
-        "データ侵害",
-        "情報漏洩"
-      ],
-      "affected_layers": [
-        "ネットワーク",
-        "クラウド/サーバー",
-        "ガバナンス/規制"
-      ],
-      "related_keywords": [
-        "Itron",
-        "公益事業",
-        "内部ITネットワーク",
-        "不正アクセス",
-        "SEC開示"
-      ],
-      "views": 0
-    },
-    {
-      "id": "a777fd6c5b69",
-      "title": "Threat actor uses Microsoft Teams to deploy new “Snow” malware",
-      "summary": "A threat group tracked as UNC6692 uses social engineering to deploy a new, custom malware suite named 'Snow' which includes a browser extension, a tunneler, and a backdoor. [...]",
-      "url": "https://www.bleepingcomputer.com/news/security/threat-actor-uses-microsoft-teams-to-deploy-new-snow-malware/",
-      "ai_score": 1,
-      "source_name": "Bleeping Computer",
-      "source_tier": "B",
-      "published": "2026-04-26T00:07:44+09:00",
-      "title_ja": "Microsoft Teams悪用と新マルウェア「Snow」の展開",
-      "summary_ja": "UNC6692という脅威グループがソーシャルエンジニアリングの手法を用い、Microsoft Teamsを悪用して「Snow」と名付けられた新しいカスタムマルウェアスイートを展開していることが判明しました。このマルウェアスイートには、ブラウザ拡張機能、トンネラー、バックドアが含まれており、広範な機能を持っています。",
-      "insight": "Microsoft Teamsのような広く利用されるコミュニケーションプラットフォームが悪用される事例は後を絶ちません。CISOは、従業員に対するソーシャルエンジニアリング攻撃の継続的な教育と、エンドポイント、SaaSアプリケーション、およびネットワークにおけるAI駆動型脅威検知能力を強化すべきです。特にブラウザ拡張機能やトンネリングは、標準的なセキュリティ対策では見過ごされがちであり、多層防御と振る舞い検知の重要性を再認識すべきです。",
+      "id": "3378ecae1c6b",
+      "title": "Sovereign Agentic Loops: Decoupling AI Reasoning from Execution in Real-World Systems",
+      "summary": "arXiv:2604.22136v1 Announce Type: new \nAbstract: Large language model (LLM) agents increasingly issue API calls that mutate real systems, yet many current architectures pass stochastic model outputs directly to execution layers. We argue that this coupling creates a safety risk because model correctness, context awareness, and alignment cannot be assumed at execution time. We introduce Sovereign Agentic Loops (SAL), a control-plane architecture in which models emit structured intents with justif",
+      "url": "https://arxiv.org/abs/2604.22136",
+      "ai_score": 2,
+      "source_name": "arXiv cs.CR",
+      "source_tier": "C",
+      "published": "2026-04-27T13:00:00+09:00",
+      "title_ja": "Sovereign Agentic Loops：AI推論と実行の分離による安全性確保",
+      "summary_ja": "LLMエージェントが実システムでAPIコールを実行するケースが増える中、現在のアーキテクチャでは確率的なモデル出力を直接実行レイヤーに渡しており、安全性リスクを生んでいる。本論文では、モデルの正しさ、コンテキスト認識、アライメントが実行時に保証されない問題を指摘し、モデルが構造化された意図を生成し、これを制御プレーンが実行と分離する「Sovereign Agentic Loops (SAL)」アーキテクチャを提案している。これはAIエージェントの安全な運用のための重要な設計原則となる。",
+      "insight": "AIエージェントの自律的な実行における安全性を確保するためには、推論と実行の分離が不可欠であり、CISOはAIエージェントのデプロイメントにおいて、厳格な制御プレーンと人間による監視・介入の仕組みを設計すべきである。特にAIエージェントリスク6階層モデルの「②ツール・実行層」のセキュリティを強化する必要がある。",
       "importance": "高",
-      "importance_reason": "一般的なビジネスコミュニケーションツールが悪用され、多機能なマルウェアが展開されるため、広範な組織にとって即時対応が求められる脅威であるため。",
-      "tag_main_id": "attack",
-      "tag_main_label": "攻撃・脅威",
+      "importance_reason": "AIエージェントの安全な運用を実現するための根本的なアーキテクチャ提案であり、今後のAIシステム設計の標準となる可能性を秘めているため。",
+      "tag_main_id": "ai_sec",
+      "tag_main_label": "AI×セキュリティ",
       "tag_subs": [
-        "ソーシャルエンジニアリング",
-        "マルウェア"
+        "AIを使った防御",
+        "研究・論文"
       ],
       "affected_layers": [
-        "デバイス/エッジ",
         "アプリ/API",
-        "ネットワーク"
+        "データ/AI",
+        "ガバナンス/規制"
       ],
       "related_keywords": [
-        "Microsoft Teams",
-        "Snowマルウェア",
-        "UNC6692",
-        "ソーシャルエンジニアリング",
-        "ブラウザ拡張機能"
+        "LLMエージェント",
+        "推論と実行の分離",
+        "Sovereign Agentic Loops",
+        "APIセキュリティ",
+        "安全性"
       ],
       "views": 0
     }
   ],
   "history": [
+    {
+      "date": "2026-04-28",
+      "articles": [
+        {
+          "id": "a2214001719d",
+          "title": "Parsing Agentic Offensive Security's Existential Threat",
+          "summary": "Some fear frontier LLMs like Claude Mythos and Anthropic's GPT-5.5 will lead to cybersecurity annihilation. Ari Herbert-Voss notes this could be an opportunity.",
+          "url": "https://www.darkreading.com/cyber-risk/industrialized-exploitation-agentic-offensive-security-existential-threat",
+          "ai_score": 2,
+          "source_name": "Dark Reading",
+          "source_tier": "B",
+          "published": "2026-04-27T22:00:00+09:00",
+          "title_ja": "エージェント型AIによる攻撃の「実存的脅威」と機会",
+          "summary_ja": "Claude MythosやGPT-5.5のような最先端LLMが、サイバーセキュリティに壊滅的な影響を与えるという懸念が浮上している。一部専門家は、これらエージェント型AIが脆弱性発見やエクスプロイト生成を自動化することで、攻撃側の優位性を高める可能性があると指摘。しかし、この進化を防御側の新たな機会と捉え、セキュリティ戦略の根本的な見直しを迫る議論も行われている。",
+          "insight": "エージェント型AIによる攻撃の自動化・高度化は避けられず、経営層はAIを活用した自動防御とインシデント対応の強化に戦略的に投資すべきである。特に、AIエージェントの自律的動作を監視し、異常を即座に検知・封じ込める能力は、ビジネス継続性の鍵となる。",
+          "importance": "高",
+          "importance_reason": "エージェント型AIによる攻撃の自動化・高度化は、既存のセキュリティパラダイムを根本的に変え、経営レベルでの戦略的対応が不可欠となるため。",
+          "tag_main_id": "ai_sec",
+          "tag_main_label": "AI×セキュリティ",
+          "tag_subs": [
+            "AIを使った攻撃",
+            "AIを使った防御"
+          ],
+          "affected_layers": [
+            "データ/AI",
+            "ガバナンス/規制"
+          ],
+          "related_keywords": [
+            "エージェント型AI",
+            "LLM",
+            "サイバー攻撃",
+            "自動化",
+            "脅威インテリジェンス"
+          ],
+          "views": 0
+        },
+        {
+          "id": "794d9246a3ec",
+          "title": "Malicious AI Prompt Injection Attacks Increasing, but Sophistication Still Low: Google",
+          "summary": "<p>The tech giant found that many indirect prompt injection attempts are harmless, but some malicious exploits have also been identified.</p>\n<p>The post <a href=\"https://www.securityweek.com/malicious-ai-prompt-injection-attacks-increasing-but-sophistication-still-low-google/\">Malicious AI Prompt Injection Attacks Increasing, but Sophistication Still Low: Google</a> appeared first on <a href=\"https://www.securityweek.com\">SecurityWeek</a>.</p>",
+          "url": "https://www.securityweek.com/malicious-ai-prompt-injection-attacks-increasing-but-sophistication-still-low-google/",
+          "ai_score": 2,
+          "source_name": "SecurityWeek",
+          "source_tier": "B",
+          "published": "2026-04-27T21:08:19+09:00",
+          "title_ja": "悪意あるAIプロンプトインジェクション攻撃が増加するも、巧妙さは依然低い：Google報告",
+          "summary_ja": "Googleの調査によると、悪意のあるプロンプトインジェクション攻撃が増加しているものの、その手口の巧妙さはまだ低い段階にある。多くの間接的なプロンプトインジェクションは無害だが、一部では悪意のあるエクスプロイトも確認されており、AIシステム固有の脆弱性として監視と対策が求められる。これはAIエージェントの普及に伴い、さらに洗練される可能性を秘めている。",
+          "insight": "プロンプトインジェクションは現在比較的単純だが、AIエージェントの普及に伴い高度化するリスクがあるため、開発・運用フェーズでのセキュリティテストと入力検証の強化が喫緊の課題である。特にユーザー入力がLLMに渡る経路でのサニタイズを徹底し、AIエージェントリスクモデルの「モデル・推論層」への対応を優先すべき。",
+          "importance": "中",
+          "importance_reason": "AIシステム特有の初期段階の攻撃手法であり、今後の洗練化に備え、予防的な対策を講じる必要があるため。",
+          "tag_main_id": "ai_sec",
+          "tag_main_label": "AI×セキュリティ",
+          "tag_subs": [
+            "プロンプトインジェクション",
+            "LLMセキュリティ"
+          ],
+          "affected_layers": [
+            "アプリ/API",
+            "データ/AI"
+          ],
+          "related_keywords": [
+            "プロンプトインジェクション",
+            "AI攻撃",
+            "LLMセキュリティ",
+            "Google",
+            "入力検証"
+          ],
+          "views": 0
+        },
+        {
+          "id": "5e81c46560ba",
+          "title": "Mythos Changed the Math on Vulnerability Discovery. Most Teams Aren't Ready for the Remediation Side",
+          "summary": "Anthropic’s Claude Mythos Preview has dominated security discussions since its April 7 announcement. Early reporting describes a powerful cybersecurity-focused AI system capable of identifying vulnerabilities at scale and raising serious questions about how quickly organizations can validate, prioritize, and remediate what it finds.\nThe debate that followed has mostly focused on the right",
+          "url": "https://thehackernews.com/2026/04/mythos-changed-math-on-vulnerability.html",
+          "ai_score": 2,
+          "source_name": "The Hacker News",
+          "source_tier": "B",
+          "published": "2026-04-27T20:58:00+09:00",
+          "title_ja": "Claude Mythosが脆弱性発見の常識を変える中、多くの組織は修正対応に遅れ",
+          "summary_ja": "AnthropicのClaude Mythos Previewは、セキュリティ特化型AIとして大規模な脆弱性特定能力を持つことが示されており、セキュリティ業界で大きな注目を集めている。このAIの能力は、組織が発見された脆弱性を迅速に検証、優先順位付け、そして修正する能力を圧倒的に超えつつある現状を浮き彫りにしている。多くのセキュリティチームは、この新たなスピードに対応する準備ができていない。",
+          "insight": "AIによる脆弱性特定能力の劇的な向上は、防御側の生産性向上にも寄与するが、同時に既存の脆弱性管理・修正プロセスの抜本的な見直しを迫る。CISOは、自動化された修正ワークフローとAIを活用した脆弱性優先順位付けシステムの導入を急ぎ、レメディエーションのスピードを加速すべきである。",
+          "importance": "高",
+          "importance_reason": "AIによる脆弱性発見能力の向上は、従来の脆弱性管理サイクルを根本的に変え、組織の対応能力が追いつかないリスクがあるため。",
+          "tag_main_id": "ai_sec",
+          "tag_main_label": "AI×セキュリティ",
+          "tag_subs": [
+            "AIを使った防御"
+          ],
+          "affected_layers": [
+            "アプリ/API",
+            "データ/AI",
+            "ガバナンス/規制"
+          ],
+          "related_keywords": [
+            "Claude Mythos",
+            "脆弱性管理",
+            "自動化",
+            "レメディエーション",
+            "セキュリティチーム"
+          ],
+          "views": 0
+        },
+        {
+          "id": "35b19ebc7468",
+          "title": "Tracking the history of the now-deceased OpenAI Microsoft AGI clause",
+          "summary": "<p>For many years, Microsoft and OpenAI's relationship has included a weird clause saying that, should AGI be achieved, Microsoft's commercial IP rights to OpenAI's technology would be null and void. That clause appeared to end today. I decided to try and track its expression over time on <a href=\"https://openai.com/\">openai.com</a>.</p>\n<p>OpenAI, July 22nd 2019 in <a href=\"https://openai.com/index/microsoft-invests-in-and-partners-with-openai/\">Microsoft invests in and partners with OpenAI to ",
+          "url": "https://simonwillison.net/2026/Apr/27/now-deceased-agi-clause/#atom-everything",
+          "ai_score": 2,
+          "source_name": "Simon Willison",
+          "source_tier": "B",
+          "published": "2026-04-28T03:38:17+09:00",
+          "title_ja": "OpenAIとMicrosoft間のAGI条項の消滅を追跡",
+          "summary_ja": "かつてMicrosoftとOpenAIの提携には、「AGI（汎用人工知能）達成時にMicrosoftの商用IP権が無効になる」という特異な条項が存在したが、これが最近消滅したと報じられている。この条項の変遷はOpenAIのウェブサイト上で追跡され、両社の戦略的関係とAGIに対する認識の変化を示唆している。これは、今後のAI技術の商用利用とIP戦略に影響を与える可能性がある。",
+          "insight": "AGI条項の消滅は、OpenAIとMicrosoftの戦略的提携の変化を示唆し、将来的なAI技術の商用利用とIP戦略に影響を与える可能性がある。経営層は、主要なAIプロバイダーの動向とビジネス関係の変化を注視し、自社のAI戦略への影響を評価すべきである。",
+          "importance": "中",
+          "importance_reason": "大手AI企業の提携条件の変更は、将来的なAI技術の商用利用と市場競争に影響を及ぼす可能性があるため。",
+          "tag_main_id": "biz_tech",
+          "tag_main_label": "ビジネス・技術動向",
+          "tag_subs": [
+            "市場トレンド"
+          ],
+          "affected_layers": [
+            "ガバナンス/規制"
+          ],
+          "related_keywords": [
+            "OpenAI",
+            "Microsoft",
+            "AGI",
+            "IP権",
+            "提携関係"
+          ],
+          "views": 0
+        },
+        {
+          "id": "370be1499991",
+          "title": "Elon Musk and Sam Altman are going to court over OpenAI’s future",
+          "summary": "After a yearslong legal feud, Elon Musk and OpenAI CEO Sam Altman are heading to trial this week in Northern California in a case that could have sweeping consequences. Ahead of OpenAI’s highly anticipated IPO, the court could rule on whether the company is allowed to exist as a for-profit enterprise and might even oust&#8230;",
+          "url": "https://www.technologyreview.com/2026/04/27/1136466/elon-musk-and-sam-altman-are-going-to-court-over-openais-future/",
+          "ai_score": 2,
+          "source_name": "MIT Tech Review",
+          "source_tier": "B",
+          "published": "2026-04-28T07:52:57+09:00",
+          "title_ja": "イーロン・マスクとサム・アルトマン、OpenAIの未来を巡り法廷へ",
+          "summary_ja": "長年の法廷闘争を経て、イーロン・マスクとOpenAIのCEOサム・アルトマンが、同社の将来を巡りカリフォルニア北部で裁判に臨む。この訴訟は、OpenAIが営利企業として存続を許されるか、あるいは経営陣が交代するかなど、同社のIPOを控えた重要な局面で広範な影響を与える可能性を秘めている。結果はAI業界全体に波及するだろう。",
+          "insight": "主要なAIサービスプロバイダーの経営体制と法的地位の不安定さは、同社の技術ロードマップやサービス提供に不確実性をもたらす。CISOは、AIサプライヤーのガバナンスリスクを評価し、サプライチェーンの安定性確保に向けた代替戦略やリスクヘッジを検討する必要がある。",
+          "importance": "高",
+          "importance_reason": "主要なAI企業の法的・経営上の問題は、AI市場全体に不確実性をもたらし、サプライチェーンリスクに直結するため。",
+          "tag_main_id": "biz_tech",
+          "tag_main_label": "ビジネス・技術動向",
+          "tag_subs": [
+            "市場トレンド"
+          ],
+          "affected_layers": [
+            "ガバナンス/規制"
+          ],
+          "related_keywords": [
+            "OpenAI",
+            "イーロン・マスク",
+            "サム・アルトマン",
+            "訴訟",
+            "IPO"
+          ],
+          "views": 0
+        },
+        {
+          "id": "a47d3e3f135f",
+          "title": "Rebuilding the data stack for AI",
+          "summary": "Artificial intelligence may be dominating boardroom agendas, but many enterprises are discovering that the biggest obstacle to meaningful adoption is the state of their data. While consumer-facing AI tools have dazzled users with speed and ease, enterprise leaders are discovering that deploying AI at scale requires something far less glamorous but far more consequential: data&#8230;",
+          "url": "https://www.technologyreview.com/2026/04/27/1136322/rebuilding-the-data-stack-for-ai/",
+          "ai_score": 2,
+          "source_name": "MIT Tech Review",
+          "source_tier": "B",
+          "published": "2026-04-27T22:00:00+09:00",
+          "title_ja": "AIのためのデータスタック再構築の必要性",
+          "summary_ja": "AIが企業の最優先課題となる中、多くの企業はAI導入の最大の障害が既存のデータ基盤にあることを認識している。コンシューマー向けAIツールがその利便性でユーザーを魅了する一方で、エンタープライズでAIを大規模に展開するには、見栄えはしないが極めて重要なデータスタックの再構築が不可欠である。質の高いデータの収集、管理、統合がAIの成功には欠かせない要素となる。",
+          "insight": "AI導入の成功には、セキュアで高品質なデータ基盤が不可欠であり、CISOはデータガバナンス、データセキュリティ、データプライバシーをAI戦略の中心に据える必要がある。データの信頼性と完全性を確保するセキュリティ設計が、AI活用によるビジネス価値創出の前提となる。",
+          "importance": "中",
+          "importance_reason": "AIのビジネス活用におけるデータ基盤の重要性は普遍的であり、そのセキュリティとガバナンスはAI戦略と切っても切り離せない要素であるため。",
+          "tag_main_id": "biz_tech",
+          "tag_main_label": "ビジネス・技術動向",
+          "tag_subs": [
+            "市場トレンド"
+          ],
+          "affected_layers": [
+            "データ/AI",
+            "ガバナンス/規制"
+          ],
+          "related_keywords": [
+            "データスタック",
+            "AI導入",
+            "データガバナンス",
+            "データセキュリティ",
+            "データ品質"
+          ],
+          "views": 0
+        },
+        {
+          "id": "3378ecae1c6b",
+          "title": "Sovereign Agentic Loops: Decoupling AI Reasoning from Execution in Real-World Systems",
+          "summary": "arXiv:2604.22136v1 Announce Type: new \nAbstract: Large language model (LLM) agents increasingly issue API calls that mutate real systems, yet many current architectures pass stochastic model outputs directly to execution layers. We argue that this coupling creates a safety risk because model correctness, context awareness, and alignment cannot be assumed at execution time. We introduce Sovereign Agentic Loops (SAL), a control-plane architecture in which models emit structured intents with justif",
+          "url": "https://arxiv.org/abs/2604.22136",
+          "ai_score": 2,
+          "source_name": "arXiv cs.CR",
+          "source_tier": "C",
+          "published": "2026-04-27T13:00:00+09:00",
+          "title_ja": "Sovereign Agentic Loops：AI推論と実行の分離による安全性確保",
+          "summary_ja": "LLMエージェントが実システムでAPIコールを実行するケースが増える中、現在のアーキテクチャでは確率的なモデル出力を直接実行レイヤーに渡しており、安全性リスクを生んでいる。本論文では、モデルの正しさ、コンテキスト認識、アライメントが実行時に保証されない問題を指摘し、モデルが構造化された意図を生成し、これを制御プレーンが実行と分離する「Sovereign Agentic Loops (SAL)」アーキテクチャを提案している。これはAIエージェントの安全な運用のための重要な設計原則となる。",
+          "insight": "AIエージェントの自律的な実行における安全性を確保するためには、推論と実行の分離が不可欠であり、CISOはAIエージェントのデプロイメントにおいて、厳格な制御プレーンと人間による監視・介入の仕組みを設計すべきである。特にAIエージェントリスク6階層モデルの「②ツール・実行層」のセキュリティを強化する必要がある。",
+          "importance": "高",
+          "importance_reason": "AIエージェントの安全な運用を実現するための根本的なアーキテクチャ提案であり、今後のAIシステム設計の標準となる可能性を秘めているため。",
+          "tag_main_id": "ai_sec",
+          "tag_main_label": "AI×セキュリティ",
+          "tag_subs": [
+            "AIを使った防御",
+            "研究・論文"
+          ],
+          "affected_layers": [
+            "アプリ/API",
+            "データ/AI",
+            "ガバナンス/規制"
+          ],
+          "related_keywords": [
+            "LLMエージェント",
+            "推論と実行の分離",
+            "Sovereign Agentic Loops",
+            "APIセキュリティ",
+            "安全性"
+          ],
+          "views": 0
+        }
+      ],
+      "today_implication": "今日の記事群は、AI、特にLLMエージェントがサイバーセキュリティに与える影響の二面性を強調しています。経営層は、AIによる自動化された攻撃への対応力を強化するため、AIを活用したセキュリティ運用の高度化と、既存の脆弱性管理プロセスの抜本的見直しに戦略的に投資すべきです。CDCサービス設計としては、AIエージェントによる脅威の検知・分析・対応の自動化を核とし、特に推論と実行を分離する安全なアーキテクチャに基づいた「ツール・実行層」の監視・制御を強化することが、次世代CDCの必須要件となります。"
+    },
     {
       "date": "2026-04-27",
       "articles": [
