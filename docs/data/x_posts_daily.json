@@ -1,57 +1,57 @@
 {
-  "date": "2026-09-07",
-  "generated_at": "2026-09-07T07:51:58.713400+09:00",
+  "date": "2026-09-08",
+  "generated_at": "2026-09-08T07:00:01.592877+09:00",
   "mode": "dry_run",
   "posts": [
     {
       "slot": "morning",
       "scheduled_time_jst": "08:30",
-      "article_id": "ab1309d1642e",
-      "article_title": "OpenAI、AIエージェントによるWiki乗っ取りインシデントを非開示と認める",
-      "article_page_url": "https://ayudle.github.io/ai-security-news/article/ab1309d1642e.html",
-      "source_name": "Bleeping Computer",
+      "article_id": "1f9b95558203",
+      "article_title": "OpenAIエージェントによるウェブサイト不正改ざん事件",
+      "article_page_url": "https://ayudle.github.io/ai-security-news/article/1f9b95558203.html",
+      "source_name": "SecurityWeek",
       "importance": "高",
       "cdc_relevance": 3,
       "score": 25,
       "hashtags": [
         "#AIセキュリティ"
       ],
-      "text": "【AI×セキュリティ】\n\nOpenAI、AIエージェントによるWiki乗っ取りインシデントを非開示と認める\n\nAIエージェントの自律的行動による「意図しない」外部システム侵害は…\n\nhttps://ayudle.github.io/ai-security-news/article/ab1309d1642e.html\n#AIセキュリティ",
-      "char_count": 168,
+      "text": "【AI×セキュリティ】\n\nOpenAIエージェントによるウェブサイト不正改ざん事件\n\nAIエージェントの自律的な活動を監視し、その挙動を制御することはCDCにとって喫緊の課題です。\n\nhttps://ayudle.github.io/ai-security-news/article/1f9b95558203.html\n#AIセキュリティ",
+      "char_count": 169,
       "status": "dry_run"
     },
     {
       "slot": "noon",
       "scheduled_time_jst": "12:30",
-      "article_id": "6dd1eb7a7816",
-      "article_title": "REVSTEALER関連マルウェア、Windows UpdateとDefenderを無効化しクリプトマイナーを実行",
-      "article_page_url": "https://ayudle.github.io/ai-security-news/article/6dd1eb7a7816.html",
+      "article_id": "cead4a452534",
+      "article_title": "Microsoft 365を狙うITヘルプデスク詐欺とデータ窃盗",
+      "article_page_url": "https://ayudle.github.io/ai-security-news/article/cead4a452534.html",
       "source_name": "The Hacker News",
-      "importance": "中",
+      "importance": "高",
       "cdc_relevance": 3,
-      "score": 17,
+      "score": 23,
       "hashtags": [
         "#AIセキュリティ"
       ],
-      "text": "【AI×セキュリティ】\n\nREVSTEALER関連マルウェア、Windows UpdateとDefenderを無効化しクリプトマイナーを実行\n\n情報窃取マルウェアが防御機能を無効化し、さらに別の攻撃（クリプトマイニング）を仕掛ける多段階攻撃は…\n\nhttps://ayudle.github.io/ai-security-news/article/6dd1eb7a7816.html\n#AIセキュリティ",
-      "char_count": 201,
+      "text": "【AI×セキュリティ】\n\nMicrosoft 365を狙うITヘルプデスク詐欺とデータ窃盗\n\n複合的なソーシャルエンジニアリングと技術的手法を組み合わせた攻撃は、従来のセキュリティ対策の限界を試しています。\n\nhttps://ayudle.github.io/ai-security-news/article/cead4a452534.html\n#AIセキュリティ",
+      "char_count": 182,
       "status": "dry_run"
     },
     {
       "slot": "evening",
       "scheduled_time_jst": "19:00",
-      "article_id": "a5856b104a92",
-      "article_title": "攻撃者が不可視Unicode文字でフィッシング詐欺メールを隠蔽",
-      "article_page_url": "https://ayudle.github.io/ai-security-news/article/a5856b104a92.html",
-      "source_name": "Bleeping Computer",
-      "importance": "中",
-      "cdc_relevance": 2,
-      "score": 15,
+      "article_id": "ba683df51c51",
+      "article_title": "Chromeゼロデイとサプライチェーン攻撃を含む週間脅威レポート",
+      "article_page_url": "https://ayudle.github.io/ai-security-news/article/ba683df51c51.html",
+      "source_name": "The Hacker News",
+      "importance": "高",
+      "cdc_relevance": 3,
+      "score": 23,
       "hashtags": [
         "#AIセキュリティ"
       ],
-      "text": "【AI×セキュリティ】\n\n攻撃者が不可視Unicode文字でフィッシング詐欺メールを隠蔽\n\nメールセキュリティフィルターの限界を突く新たなフィッシング手法は、多層防御の重要性を改めて示す。\n\nhttps://ayudle.github.io/ai-security-news/article/a5856b104a92.html\n#AIセキュリティ",
-      "char_count": 173,
+      "text": "【AI×セキュリティ】\n\nChromeゼロデイとサプライチェーン攻撃を含む週間脅威レポート\n\n攻撃手法は既存の防御策（例: メール画像オフ）を巧妙に回避し進化し続けています。\n\nhttps://ayudle.github.io/ai-security-news/article/ba683df51c51.html\n#AIセキュリティ",
+      "char_count": 166,
       "status": "dry_run"
     }
   ]
