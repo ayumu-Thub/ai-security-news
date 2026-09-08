@@ -1,57 +1,57 @@
 {
-  "date": "2026-09-08",
-  "generated_at": "2026-09-08T07:00:01.592877+09:00",
+  "date": "2026-09-09",
+  "generated_at": "2026-09-09T06:50:50.396084+09:00",
   "mode": "dry_run",
   "posts": [
     {
       "slot": "morning",
       "scheduled_time_jst": "08:30",
-      "article_id": "1f9b95558203",
-      "article_title": "OpenAIエージェントによるウェブサイト不正改ざん事件",
-      "article_page_url": "https://ayudle.github.io/ai-security-news/article/1f9b95558203.html",
-      "source_name": "SecurityWeek",
+      "article_id": "0fdf6c3f1118",
+      "article_title": "OpenAI、GPT-6 Astraがゼロデイを発見できるが監視は困難と発表",
+      "article_page_url": "https://ayudle.github.io/ai-security-news/article/0fdf6c3f1118.html",
+      "source_name": "Bleeping Computer",
       "importance": "高",
       "cdc_relevance": 3,
       "score": 25,
       "hashtags": [
         "#AIセキュリティ"
       ],
-      "text": "【AI×セキュリティ】\n\nOpenAIエージェントによるウェブサイト不正改ざん事件\n\nAIエージェントの自律的な活動を監視し、その挙動を制御することはCDCにとって喫緊の課題です。\n\nhttps://ayudle.github.io/ai-security-news/article/1f9b95558203.html\n#AIセキュリティ",
-      "char_count": 169,
+      "text": "【AI×セキュリティ】\n\nOpenAI、GPT-6 Astraがゼロデイを発見できるが監視は困難と発表\n\n最先端AIモデルがゼロデイ脆弱性を発見する能力を持つことは、攻撃者側が同様の技術を悪用するリスクを高める。\n\nhttps://ayudle.github.io/ai-security-news/article/0fdf6c3f1118.html\n#AIセキュリティ",
+      "char_count": 185,
       "status": "dry_run"
     },
     {
       "slot": "noon",
       "scheduled_time_jst": "12:30",
-      "article_id": "cead4a452534",
-      "article_title": "Microsoft 365を狙うITヘルプデスク詐欺とデータ窃盗",
-      "article_page_url": "https://ayudle.github.io/ai-security-news/article/cead4a452534.html",
+      "article_id": "4e4939ca2937",
+      "article_title": "自律型AIエージェントが6時間未満で数千のクレデンシャルを侵害",
+      "article_page_url": "https://ayudle.github.io/ai-security-news/article/4e4939ca2937.html",
       "source_name": "The Hacker News",
       "importance": "高",
       "cdc_relevance": 3,
-      "score": 23,
+      "score": 25,
       "hashtags": [
         "#AIセキュリティ"
       ],
-      "text": "【AI×セキュリティ】\n\nMicrosoft 365を狙うITヘルプデスク詐欺とデータ窃盗\n\n複合的なソーシャルエンジニアリングと技術的手法を組み合わせた攻撃は、従来のセキュリティ対策の限界を試しています。\n\nhttps://ayudle.github.io/ai-security-news/article/cead4a452534.html\n#AIセキュリティ",
-      "char_count": 182,
+      "text": "【AI×セキュリティ】\n\n自律型AIエージェントが6時間未満で数千のクレデンシャルを侵害\n\n攻撃側AIエージェントによる自動化されたクレデンシャル窃取が現実の脅威となり、攻撃実行速度が劇的に向上している。\n\nhttps://ayudle.github.io/ai-security-news/article/4e4939ca2937.html\n#AIセキュリティ",
+      "char_count": 181,
       "status": "dry_run"
     },
     {
       "slot": "evening",
       "scheduled_time_jst": "19:00",
-      "article_id": "ba683df51c51",
-      "article_title": "Chromeゼロデイとサプライチェーン攻撃を含む週間脅威レポート",
-      "article_page_url": "https://ayudle.github.io/ai-security-news/article/ba683df51c51.html",
-      "source_name": "The Hacker News",
+      "article_id": "5164fe4feb55",
+      "article_title": "ハッカーが大規模クレデンシャル窃取のためのAIフレームワークを構築",
+      "article_page_url": "https://ayudle.github.io/ai-security-news/article/5164fe4feb55.html",
+      "source_name": "Bleeping Computer",
       "importance": "高",
       "cdc_relevance": 3,
-      "score": 23,
+      "score": 25,
       "hashtags": [
         "#AIセキュリティ"
       ],
-      "text": "【AI×セキュリティ】\n\nChromeゼロデイとサプライチェーン攻撃を含む週間脅威レポート\n\n攻撃手法は既存の防御策（例: メール画像オフ）を巧妙に回避し進化し続けています。\n\nhttps://ayudle.github.io/ai-security-news/article/ba683df51c51.html\n#AIセキュリティ",
-      "char_count": 166,
+      "text": "【AI×セキュリティ】\n\nハッカーが大規模クレデンシャル窃取のためのAIフレームワークを構築\n\n攻撃の自動化は個々の攻撃者のスキルレベルに依存せず、より広範な脅威アクターが高度な攻撃を実行できるようになることを意味…\n\nhttps://ayudle.github.io/ai-security-news/article/5164fe4feb55.html\n#AIセキュリティ",
+      "char_count": 187,
       "status": "dry_run"
     }
   ]
